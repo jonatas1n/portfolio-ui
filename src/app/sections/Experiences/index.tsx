@@ -9,7 +9,21 @@ export const Experiences = () => {
   return (
     <SectionCard>
       <div className="grid gap-6">
-        <h3>Experience</h3>
+        <h3 className="text-4xl font-display font-bold">Experience</h3>
+        <ExperienceCard
+          position="Frontend Developer"
+          companyName="Jusbrasil"
+          startDate="january 2023"
+          technologies={technologies}
+          description={description}
+        />
+        <ExperienceCard
+          position="Frontend Developer"
+          companyName="Jusbrasil"
+          startDate="january 2023"
+          technologies={technologies}
+          description={description}
+        />
         <ExperienceCard
           position="Frontend Developer"
           companyName="Jusbrasil"
