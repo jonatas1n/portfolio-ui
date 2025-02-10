@@ -1,8 +1,9 @@
 import { PropsWithChildren } from "react";
 
-export const SectionCard = ({ children }: PropsWithChildren) => {
+
+export const SectionCard = ({ children, id }: PropsWithChildren<{id: string}>) => {
   return (
-    <div className="px-24 shadow shadow-accent text-dark py-9 rounded-2xl bg-light">
+    <div id={id} className="px-24 shadow shadow-accent text-dark py-9 rounded-2xl bg-light">
       {children}
     </div>
   );

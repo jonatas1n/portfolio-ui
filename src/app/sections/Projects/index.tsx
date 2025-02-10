@@ -12,7 +12,7 @@ export const Projects = () => {
   const [selectedFilter, setSelectedFilter] = useState(filters[0]);
 
   return (
-    <SectionCard>
+    <SectionCard id="projects">
       <div className="grid gap-6">
         <div className="text-4xl font-bold font-display">Projects</div>
         <div className="flex gap-4">
