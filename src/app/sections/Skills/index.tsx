@@ -1,15 +1,17 @@
-import { OutlineCard } from "@/app/components/OutlineCard";
+import { getSkills } from "@/app/services/skills";
+import { SkillCard } from "./SkillCard";
 import { SectionCard } from "@/app/components/SectionCard";
 
-export const Skills = () => {
-  const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quasi, eaque fugiat saepe quibusdam exercitationem. Placeat nulla dicta quam voluptatum, mollitia accusantium dignissimos. Labore exercitationem mollitia eligendi iste, repudiandae delectus quas ad ullam cupiditate quod tempore ex eos, doloribus dolore qui aliquam porro voluptatibus repellendus?"
+export const Skills = async () => {
+  const skills = await getSkills();
+  
   return (
     <SectionCard id="skills">
       <div className="grid gap-8">
         <h3 className="text-4xl font-display font-bold">Skills</h3>
-        <OutlineCard title="Typescript" description={description} />
-        <OutlineCard title="React" description={description} />
-        <OutlineCard title="Python" description={description} />
+        {skills?.map(skill => (
+          <SkillCard key={skill.id} {...skill} />
+        ))}
       </div>
     </SectionCard>
   );
