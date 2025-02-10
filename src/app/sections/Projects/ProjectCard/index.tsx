@@ -9,6 +9,7 @@ type ProjectCardProps = {
   technologies: string[];
   title: string;
   link: string;
+  description: string;
   photos?: string[];
 };
 
@@ -16,6 +17,7 @@ export const ProjectCard = ({
   technologies,
   title,
   link,
+  description,
   photos,
 }: ProjectCardProps) => {
   return (
@@ -29,12 +31,7 @@ export const ProjectCard = ({
             ))}
           </div>
           <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ullam
-            nisi aspernatur aliquid totam reiciendis voluptatibus est, perferendis
-            in obcaecati magnam nam deserunt culpa. Cupiditate inventore quia unde
-            pariatur nihil neque recusandae placeat dolor repellat nam, alias quam
-            dolore qui optio beatae eligendi expedita molestiae natus harum illum
-            sit repellendus? Quos, nam temporibus. Facilis, distinctio.
+            {description}
           </div>
           <div className="flex gap-3 mt-4">
             <Button>More photos</Button>
