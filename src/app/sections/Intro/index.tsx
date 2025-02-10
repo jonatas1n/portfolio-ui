@@ -2,7 +2,7 @@ import { SectionCard } from "@/app/components/SectionCard";
 
 export const Intro = () => {
   return (
-    <SectionCard id="home">
+    <SectionCard>
       <div className="grid-cols-8 grid mt-3">
         <div className="col-span-7 gap-6 grid">
           <div className="grid gap-9 mb-20">
