@@ -5,7 +5,7 @@ export const Intro = () => {
     <SectionCard>
       <div className="grid-cols-8 grid mt-3">
         <div className="col-span-7 gap-6 grid">
-          <div className="grid gap-9 mb-20">
+          <div className="grid gap-9">
             <div className="font-display">
               <h1 className="text-6xl font-bold leading-10">
                 I&apos;m Jônatas Gomes
@@ -24,11 +24,6 @@ export const Intro = () => {
               dignissim.
             </div>
           </div>
-          <nav className="sticky top-0 text-xl font-display flex font-medium underline gap-14 mb-4 bg-light">
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#experiences">Experiences</a>
-          </nav>
         </div>
       </div>
     </SectionCard>
