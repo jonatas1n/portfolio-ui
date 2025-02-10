@@ -30,8 +30,7 @@ export const Projects = () => {
 
   useEffect(() => {
     getFilters().then((fetchedFilters) => {
-      console.log(fetchedFilters);
-      setFiltersList(fetchedFilters)
+      setFiltersList(fetchedFilters);
     });
   }, []);
 
@@ -46,26 +45,28 @@ export const Projects = () => {
           <div className="text-4xl font-bold font-display">Projects</div>
           {projectsList?.length ? (
             <div className="grid gap-6">
-              <div className="flex gap-4 items-center font-body">
-                <p className="text-accent">Filters by technology:</p>
-                {filtersList?.map((filter) => (
-                  <Tag
-                    key={filter}
-                    onClick={() => handleChangeFilters(filter)}
-                    active={selectedFilters.includes(filter)}
-                  >
-                    {filter}
-                  </Tag>
-                ))}
-                {selectedFilters.length !== 0 && (
-                  <p
-                    onClick={clearFilters}
-                    className="flex gap-1 hover:cursor-pointer text-sm items-center uppercase text-accent border-b border-accent"
-                  >
-                    <X size="16" /> Clear
-                  </p>
-                )}
-              </div>
+              {filtersList.length > 0 && (
+                <div className="flex gap-4 items-center font-body">
+                  <p className="text-accent">Filters by technology:</p>
+                  {filtersList?.map((filter) => (
+                    <Tag
+                      key={filter}
+                      onClick={() => handleChangeFilters(filter)}
+                      active={selectedFilters.includes(filter)}
+                    >
+                      {filter}
+                    </Tag>
+                  ))}
+                  {selectedFilters.length !== 0 && (
+                    <p
+                      onClick={clearFilters}
+                      className="flex gap-1 hover:cursor-pointer text-sm items-center uppercase text-accent border-b border-accent"
+                    >
+                      <X size="16" /> Clear
+                    </p>
+                  )}
+                </div>
+              )}
               <div className="grid gap-6">
                 {projectsList?.map((project) => (
                   <ProjectCard key={project.id} {...project} />
@@ -75,7 +76,7 @@ export const Projects = () => {
                 </div>
               </div>
             </div>
-          ): null}
+          ) : null}
           {projectsList?.length === 0 && (
             <p className="text-lg">No projects found</p>
           )}
