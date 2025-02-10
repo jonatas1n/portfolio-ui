@@ -8,6 +8,7 @@ import { ChevronDown } from "lucide-react";
 
 import "@fontsource-variable/outfit";
 import "@fontsource-variable/source-sans-3";
+import { Footer } from "./sections/Footer";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
           <Projects />
           <Skills />
           <Experiences />
+          <Footer />
         </div>
         <div className="relative col-span-1 grid items-center h-dvh max-h-dvh">
           <SideMenu />
