@@ -7,3 +7,13 @@ export type Experience = {
   technologies: string[];
   description: string;
 };
+
+export type ExperienceResponse = {
+  id: string;
+  title: string;
+  company_name: string;
+  start_date: string;
+  end_date?: string;
+  technologies: string;
+  description: string;
+}
