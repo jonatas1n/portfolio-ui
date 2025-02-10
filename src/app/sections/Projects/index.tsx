@@ -14,18 +14,18 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const Projects = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const swrPath = makePath(PROJECTS_ROUTE, { selectedFilters });
+  const [technologies, setTechnologies] = useState<string[]>([]);
+  const swrPath = makePath(PROJECTS_ROUTE, { technologies });
   const { data: projectsList, error } = useSWR<Project[]>(swrPath, fetcher);
 
   const handleChangeFilters = (filter: string) => {
-    if (selectedFilters.includes(filter)) {
-      setSelectedFilters((prevFilters) =>
+    if (technologies.includes(filter)) {
+      setTechnologies((prevFilters) =>
         prevFilters.filter((f) => f !== filter)
       );
       return;
     }
-    setSelectedFilters((prevFilters) => [...prevFilters, filter]);
+    setTechnologies((prevFilters) => [...prevFilters, filter]);
   };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const Projects = () => {
     });
   }, []);
 
-  const clearFilters = () => setSelectedFilters([]);
+  const clearFilters = () => setTechnologies([]);
 
   return (
     <SectionCard id="projects">
@@ -52,15 +52,15 @@ export const Projects = () => {
                     <Tag
                       key={filter}
                       onClick={() => handleChangeFilters(filter)}
-                      active={selectedFilters.includes(filter)}
+                      active={technologies.includes(filter)}
                     >
                       {filter}
                     </Tag>
                   ))}
-                  {selectedFilters.length !== 0 && (
+                  {technologies.length !== 0 && (
                     <p
                       onClick={clearFilters}
-                      className="flex gap-1 hover:cursor-pointer text-sm items-center uppercase text-accent border-b border-accent"
+                      className="flex gap-1 hover:cursor-pointer text-sm items-center uppercase text-accent"
                     >
                       <X size="16" /> Clear
                     </p>
