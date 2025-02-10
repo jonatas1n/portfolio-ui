@@ -47,7 +47,7 @@ export const Projects = () => {
             <div className="grid gap-6">
               {filtersList.length > 0 && (
                 <div className="flex gap-4 items-center font-body">
-                  <p className="text-accent">Filters by technology:</p>
+                  <p className="text-accent">Filter by technology:</p>
                   {filtersList?.map((filter) => (
                     <Tag
                       key={filter}
