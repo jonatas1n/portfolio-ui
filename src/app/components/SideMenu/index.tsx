@@ -7,7 +7,7 @@ export const SideMenu = () => {
     <div className="text-light font-display gap-3 grid col-span-1 fixed top-1/2 transform -translate-y-1/2">
       <p className="font-bold">Get in touch</p>
       <ul className="grid gap-3 font-body">
-        <Link className="underline" href={social.github}>
+        <Link target="__blank" className="underline" href={social.github}>
           <li className="flex gap-1 items-center">
             <div className="rounded-full bg-light text-dark p-1">
               <Github size={18} />
@@ -15,7 +15,7 @@ export const SideMenu = () => {
             Github
           </li>
         </Link>
-        <Link className="underline" href={social.linkedin}>
+        <Link target="__blank" className="underline" href={social.linkedin}>
           <li className="flex gap-1">
             <div className="rounded-full bg-light text-dark p-1">
               <LucideLinkedin size={18} />
