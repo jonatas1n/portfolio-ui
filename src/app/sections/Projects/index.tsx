@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SectionCard } from "@/app/components/SectionCard";
 import { ProjectCard } from "./ProjectCard";
 import { Tag } from "@/app/components/Tag";
+import { Button } from "@/app/components/Button";
 
 export const Projects = () => {
   const technologies = ["Python", "React", "Docker", "PostgreSQL"];
@@ -41,6 +42,9 @@ export const Projects = () => {
             title="Project X"
             link="www.google.com"
           />
+          <div className="grid justify-end">
+            <Button>See all projects</Button>
+          </div>
         </div>
       </div>
     </SectionCard>
