@@ -1,4 +1,4 @@
-import { getSkills } from "@/app/services/skills";
+import { getSkills } from "@/app/services";
 import { SkillCard } from "./SkillCard";
 import { SectionCard } from "@/app/components/SectionCard";
 
@@ -12,6 +12,7 @@ export const Skills = async () => {
         {skills?.map(skill => (
           <SkillCard key={skill.id} {...skill} />
         ))}
+        {skills?.length === 0 && <p className="text-lg">No skills found</p>}
       </div>
     </SectionCard>
   );

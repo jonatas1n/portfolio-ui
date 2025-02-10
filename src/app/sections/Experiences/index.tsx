@@ -1,36 +1,18 @@
 import { SectionCard } from "@/app/components/SectionCard";
+import { getExperiences } from "@/app/services";
 import { ExperienceCard } from "./ExperienceCard";
 
-export const Experiences = () => {
-  const technologies = ["React", "Typescript", "Python"];
-  const description =
-    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque molestiae beatae magni nobis aperiam odit aspernatur corrupti commodi. Doloribus similique vel iure sunt atque voluptatum!";
+export const Experiences = async () => {
+  const experiences = await getExperiences();
 
   return (
     <SectionCard id="experiences">
       <div className="grid gap-6">
         <h3 className="text-4xl font-display font-bold">Experiences</h3>
-        <ExperienceCard
-          position="Frontend Developer"
-          companyName="Jusbrasil"
-          startDate="january 2023"
-          technologies={technologies}
-          description={description}
-        />
-        <ExperienceCard
-          position="Frontend Developer"
-          companyName="Jusbrasil"
-          startDate="january 2023"
-          technologies={technologies}
-          description={description}
-        />
-        <ExperienceCard
-          position="Frontend Developer"
-          companyName="Jusbrasil"
-          startDate="january 2023"
-          technologies={technologies}
-          description={description}
-        />
+        {experiences?.map(experience => (
+          <ExperienceCard key={experience.id} {...experience} />
+        ))}
+        {experiences.length === 0 && <p className="text-lg">No experiences found</p>}
       </div>
     </SectionCard>
   );

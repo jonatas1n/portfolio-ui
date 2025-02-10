@@ -1,14 +1,6 @@
 import { Card } from "@/app/components/Card";
 import { Tag } from "@/app/components/Tag";
-
-type ExperienceCardProps = {
-  position: string;
-  companyName: string;
-  startDate: string;
-  endDate?: string;
-  technologies: string[];
-  description: string;
-};
+import { Experience } from "@/app/types";
 
 export const ExperienceCard = ({
   position,
@@ -17,7 +9,7 @@ export const ExperienceCard = ({
   endDate,
   technologies,
   description,
-}: ExperienceCardProps) => {
+}: Experience) => {
   return (
     <Card>
       <div className="grid gap-3">
