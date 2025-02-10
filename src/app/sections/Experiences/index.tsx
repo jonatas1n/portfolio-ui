@@ -7,9 +7,9 @@ export const Experiences = () => {
     "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque molestiae beatae magni nobis aperiam odit aspernatur corrupti commodi. Doloribus similique vel iure sunt atque voluptatum!";
 
   return (
-    <SectionCard id="experience">
+    <SectionCard id="experiences">
       <div className="grid gap-6">
-        <h3 className="text-4xl font-display font-bold">Experience</h3>
+        <h3 className="text-4xl font-display font-bold">Experiences</h3>
         <ExperienceCard
           position="Frontend Developer"
           companyName="Jusbrasil"

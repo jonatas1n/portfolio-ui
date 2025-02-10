@@ -2,7 +2,7 @@ import { SectionCard } from "@/app/components/SectionCard";
 
 export const Intro = () => {
   return (
-    <SectionCard>
+    <SectionCard id="home">
       <div className="grid-cols-8 grid mt-3">
         <div className="col-span-7 gap-6 grid">
           <div className="grid gap-9 mb-20">
@@ -27,7 +27,7 @@ export const Intro = () => {
           <nav className="sticky top-0 text-xl font-display flex font-medium underline gap-14 mb-4 bg-light">
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
+            <a href="#experiences">Experiences</a>
           </nav>
         </div>
       </div>
