@@ -1,16 +1,23 @@
 import { SectionCard } from "@/app/components/SectionCard";
-import { Card } from "@/app/components/Card";
+import { ExperienceCard } from "./ExperienceCard";
 
 export const Experiences = () => {
+  const technologies = ["React", "Typescript", "Python"];
+  const description =
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque molestiae beatae magni nobis aperiam odit aspernatur corrupti commodi. Doloribus similique vel iure sunt atque voluptatum!";
+
   return (
     <SectionCard>
       <div className="grid gap-6">
         <h3>Experience</h3>
-        <Card>
-          <h4>Position Definition</h4> 
-          
-        </Card>
+        <ExperienceCard
+          position="Frontend Developer"
+          companyName="Jusbrasil"
+          startDate="january 2023"
+          technologies={technologies}
+          description={description}
+        />
       </div>
     </SectionCard>
-  )
-}
+  );
+};
