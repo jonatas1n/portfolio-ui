@@ -1,4 +1,4 @@
-import { social } from "@/app/constants";
+import { social } from "@/app/constants/social";
 import { Github, LucideLinkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
