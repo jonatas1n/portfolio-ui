@@ -3,6 +3,6 @@ export type Project = {
   title: string;
   technologies: string[];
   description: string;
-  images: string[];
+  images?: string[];
   link?: string;
 };
