@@ -16,7 +16,7 @@ export const ExperienceCard = ({
         <div className="grid">
           <h4 className="text-2xl font-display font-bold">{position}</h4>
           <p>
-            {companyName} - {startDate} ~ {endDate ?? "Actually"}
+            <strong>{companyName}</strong> - {startDate} ~ {endDate ?? "Actually"}
           </p>
         </div>
         <div className="flex gap-4">
