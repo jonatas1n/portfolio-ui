@@ -1,35 +1,39 @@
-import { makePath } from "@/app/services/utils";
 import { Experience, ExperienceResponse } from "../types";
+import { makePath } from "./utils";
 
-const EXPERIENCES_ROUTE = "experiences";
+export const EXPERIENCES_ROUTE = "experiences";
 
-export const getExperiences = async (): Promise<Experience[]> => {
+export const experiencesFetcher = (url: string) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((experienceList: ExperienceResponse[]) =>
+      experienceList.map((experience) => {
+        const {
+          company_name: companyName,
+          start_date: startDate,
+          end_date: endDate,
+          technologies,
+          ...rest
+        } = experience;
+        const formattedExperience = {
+          ...rest,
+          companyName,
+          startDate,
+          endDate,
+          technologies,
+        };
+        return formattedExperience;
+      })
+    );
+
+export const getExperiencesFilters = async (): Promise<Experience["technologies"]> => {
   try {
-    const path = makePath(EXPERIENCES_ROUTE);
+    const path = makePath(EXPERIENCES_ROUTE + "/technologies");
     const response = await fetch(path);
-    const experiencesResponse: ExperienceResponse[] = await response.json();
-    const experiences: Experience[] = experiencesResponse.map((experience) => {
-      const {
-        company_name: companyName,
-        start_date: startDate,
-        end_date: endDate,
-        title: position,
-        technologies,
-        ...rest
-      } = experience;
-      const formattedExperience = {
-        ...rest,
-        companyName,
-        startDate,
-        endDate,
-        position,
-        technologies: JSON.parse(technologies),
-      };
-      return formattedExperience;
-    });
-    return experiences;
+    const data = await response.json();
+    return data.technologies || [];
   } catch (error) {
-    console.error("Error fetching the experiences", error);
+    console.error("Error fetch the experiences filters", error);
     return [];
   }
 };
