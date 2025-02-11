@@ -3,7 +3,7 @@ import { Project } from "../types";
 
 export const PROJECTS_ROUTE = "projects";
 
-export const getFilters = async (): Promise<Project["technologies"]> => {
+export const getProjectFilters = async (): Promise<Project["technologies"]> => {
   try {
     const path = makePath(PROJECTS_ROUTE + "/technologies");
     const response = await fetch(path);
