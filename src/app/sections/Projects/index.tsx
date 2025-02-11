@@ -8,7 +8,7 @@ import { Tag } from "@/app/components/Tag";
 import { Button } from "@/app/components/Button";
 import { Project } from "@/app/types";
 import { getFilters, makePath, PROJECTS_ROUTE } from "@/app/services";
-import { X } from "lucide-react";
+import { Filter } from "@/app/components/Filter";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -45,28 +45,12 @@ export const Projects = () => {
           <div className="text-4xl font-bold font-display">Projects</div>
           {projectsList?.length ? (
             <div className="grid gap-6">
-              {filtersList.length > 0 && (
-                <div className="flex gap-4 items-center font-body">
-                  <p className="text-accent">Filter by technology:</p>
-                  {filtersList?.map((filter) => (
-                    <Tag
-                      key={filter}
-                      onClick={() => handleChangeFilters(filter)}
-                      active={technologies.includes(filter)}
-                    >
-                      {filter}
-                    </Tag>
-                  ))}
-                  {technologies.length !== 0 && (
-                    <p
-                      onClick={clearFilters}
-                      className="flex gap-1 hover:cursor-pointer text-sm items-center uppercase text-accent"
-                    >
-                      <X size="16" /> Clear
-                    </p>
-                  )}
-                </div>
-              )}
+              <Filter
+                filtersList={filtersList}
+                onClear={clearFilters}
+                onChange={handleChangeFilters}
+                technologies={technologies}
+              />
               <div className="grid gap-6">
                 {projectsList?.map((project) => (
                   <ProjectCard key={project.id} {...project} />
