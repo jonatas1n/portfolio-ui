@@ -10,10 +10,10 @@ export type Experience = {
 
 export type ExperienceResponse = {
   id: string;
-  title: string;
+  position: string;
   company_name: string;
   start_date: string;
   end_date?: string;
-  technologies: string;
+  technologies: string[];
   description: string;
 }
