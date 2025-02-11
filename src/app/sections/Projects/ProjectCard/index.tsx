@@ -4,23 +4,15 @@ import { Button } from "@/app/components/Button";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-type ProjectCardProps = {
-  key: string;
-  technologies: string[];
-  title: string;
-  link?: string;
-  description: string;
-  photos?: string[];
-};
+import { Project } from "@/app/types";
 
 export const ProjectCard = ({
   technologies,
   title,
   link,
   description,
-  photos,
-}: ProjectCardProps) => {
+  images,
+}: Project) => {
   return (
     <Card>
       <div className="grid-gap-4 grid-cols-4">
@@ -43,7 +35,7 @@ export const ProjectCard = ({
             )}
           </div>
         </div>
-        {photos && <Image src={photos[0]} alt="Photo" />}
+        {images && <Image src={images[0]} alt="Photo" />}
       </div>
     </Card>
   );
