@@ -10,7 +10,7 @@ export const getProjectFilters = async (): Promise<Project["technologies"]> => {
     const data = await response.json();
     return data.technologies || [];
   } catch (error) {
-    console.error("Error fetching the project filters", error);
+    console.log("Error fetching the project filters", error);
     return [];
   }
 }

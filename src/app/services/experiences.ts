@@ -3,7 +3,7 @@ import { makePath } from "./utils";
 
 export const EXPERIENCES_ROUTE = "experiences";
 
-export const experiencesFetcher = (url: string) =>
+export const getExperiences = (url: string) =>
   fetch(url)
     .then((res) => res.json())
     .then((experienceList: ExperienceResponse[]) =>
@@ -33,7 +33,7 @@ export const getExperiencesFilters = async (): Promise<Experience["technologies"
     const data = await response.json();
     return data.technologies || [];
   } catch (error) {
-    console.error("Error fetch the experiences filters", error);
+    console.log("Error fetch the experiences filters", error);
     return [];
   }
 };
