@@ -25,7 +25,6 @@ export const ProjectCard = ({
           </div>
           <div>{description}</div>
           <div className="flex gap-3 mt-4">
-            <Button>More photos</Button>
             {link && (
               <Link href={link}>
                 <Button>
