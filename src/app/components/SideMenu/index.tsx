@@ -9,7 +9,7 @@ import Link from "next/link";
 import { FloatButton } from "../FloatButton";
 
 export const SideMenu = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpenState = () => setIsOpen(!isOpen);
 
