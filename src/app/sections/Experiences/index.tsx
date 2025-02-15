@@ -1,17 +1,22 @@
 "use client";
 
 import {
-  experiencesFetcher,
+  getExperiences,
   makePath,
   getExperiencesFilters,
   EXPERIENCES_ROUTE,
 } from "@/app/services";
 import { SectionCard } from "@/app/components/SectionCard";
-import { ExperienceCard } from "./ExperienceCard";
+import { ExperienceHeader } from "./ExperienceHeader";
 import { useState, useEffect } from "react";
 import useSWR from "swr";
 import { Experience } from "@/app/types";
 import { Filter } from "@/app/components/Filter";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
 
 export const Experiences = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
@@ -19,7 +24,7 @@ export const Experiences = () => {
   const swrPath = makePath(EXPERIENCES_ROUTE, { technologies });
   const { data: experiencesList, error } = useSWR<Experience[]>(
     swrPath,
-    experiencesFetcher
+    getExperiences
   );
 
   const handleChangeFilters = (filter: string) => {
@@ -40,8 +45,8 @@ export const Experiences = () => {
 
   return (
     <SectionCard id="experiences">
-      <div className="grid gap-6">
-        <h3 className="text-4xl font-display font-bold">Experiences</h3>
+      <div className="grid gap-4">
+        <h3 className="text-4xl font-display font-bold">My Journey</h3>
         {experiencesList?.length ? (
           <div className="grid gap-6">
             <Filter
@@ -51,9 +56,23 @@ export const Experiences = () => {
               technologies={technologies}
             />
             <div className="grid gap-6">
-              {experiencesList?.map((experience) => (
-                <ExperienceCard key={experience.id} {...experience} />
-              ))}
+              <VerticalTimeline lineColor="#E5D9C0">
+                {experiencesList?.map(({ description, ...experience }) => (
+                  <VerticalTimelineElement
+                  iconStyle={{background: "#1E1E1E", width: 24, height: 24, marginLeft: -12, marginTop: 16}}
+                    contentStyle={{
+                      background: "#E5D9C0",
+                      borderRadius: ".5rem",
+                      boxShadow: "0 0",
+                    }}
+                    contentArrowStyle={{borderRightColor: "#E5D9C0"}}
+                    key={experience.id}
+                    date={<ExperienceHeader {...experience} />}
+                  >
+                    {description}
+                  </VerticalTimelineElement>
+                ))}
+              </VerticalTimeline>
             </div>
           </div>
         ) : (
