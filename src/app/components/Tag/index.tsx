@@ -15,7 +15,7 @@ export const Tag = ({
       onClick={onClick}
       className={`${
         active ? "bg-accent text-light" : "bg-light text-accent"
-      } border-accent border hover:cursor-pointer rounded-full px-4 text-xs font-body uppercase font-bold`}
+      } border-accent border ${onClick ? 'cursor-pointer' : 'cursor-default'} rounded-full px-4 text-xs font-body uppercase font-bold`}
     >
       {children}
     </div>
