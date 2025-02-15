@@ -7,15 +7,13 @@ import {
   EXPERIENCES_ROUTE,
 } from "@/app/services";
 import { SectionCard } from "@/app/components/SectionCard";
-import { ExperienceHeader } from "./ExperienceHeader";
+
 import { useState, useEffect } from "react";
 import useSWR from "swr";
 import { Experience } from "@/app/types";
 import { Filter } from "@/app/components/Filter";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+import { ExperiencesTimeline } from "./ExperiencesTimeline";
+
 import "react-vertical-timeline-component/style.min.css";
 
 export const Experiences = () => {
@@ -55,25 +53,7 @@ export const Experiences = () => {
               onChange={handleChangeFilters}
               technologies={technologies}
             />
-            <div className="grid gap-6">
-              <VerticalTimeline lineColor="#E5D9C0">
-                {experiencesList?.map(({ description, ...experience }) => (
-                  <VerticalTimelineElement
-                  iconStyle={{background: "#1E1E1E", width: 24, height: 24, marginLeft: -12, marginTop: 16}}
-                    contentStyle={{
-                      background: "#E5D9C0",
-                      borderRadius: ".5rem",
-                      boxShadow: "0 0",
-                    }}
-                    contentArrowStyle={{borderRightColor: "#E5D9C0"}}
-                    key={experience.id}
-                    date={<ExperienceHeader {...experience} />}
-                  >
-                    {description}
-                  </VerticalTimelineElement>
-                ))}
-              </VerticalTimeline>
-            </div>
+            <ExperiencesTimeline experiencesList={experiencesList} />
           </div>
         ) : (
           error && "An error occurred"
