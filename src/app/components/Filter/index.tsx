@@ -26,7 +26,7 @@ export const Filter = ({ filtersList, onClear, onChange, technologies }: FilterP
           onClick={onClear}
           className="flex gap-1 hover:cursor-pointer text-sm items-center uppercase text-accent"
         >
-          <X size="16" /> Clear
+          <FaTimes size="16" /> Clear
         </p>
       )}
     </div>

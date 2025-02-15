@@ -1,5 +1,7 @@
 import { social } from "@/app/constants/social";
-import { Github, LucideLinkedin, Mail } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 import Link from "next/link";
 
 export const SideMenu = () => {
@@ -36,17 +38,17 @@ export const SideMenu = () => {
           </Link>
           <Link target="__blank" className="underline" href={social.linkedin}>
             <li className="flex gap-1">
-              <div className="rounded-full bg-light text-dark p-1">
+                <FaGithub size={18} />
                 <LucideLinkedin size={18} />
               </div>{" "}
               LinkedIn
             </li>
-          </Link>
+                <FaLinkedin size={18} />
           <Link className="underline" href={social.email}>
             <li className="flex gap-1">
               <div className="rounded-full bg-light text-dark p-1">
                 <Mail size={18} />
-              </div>{" "}
+                <FiMail size={18} />
               Email
             </li>
           </Link>

@@ -6,7 +6,7 @@ export const BackToTop = () => {
     <div className=" text-light absolute bottom-0">
       <Link className="flex gap-4" href="#home">
         Back to top
-        <CircleArrowUp />
+        <FaCircleArrowUp />
       </Link>
     </div>
   );

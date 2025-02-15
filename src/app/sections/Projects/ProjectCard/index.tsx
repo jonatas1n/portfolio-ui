@@ -1,7 +1,7 @@
 import { Card } from "@/app/components/Card";
 import { Tag } from "@/app/components/Tag";
 import { Button } from "@/app/components/Button";
-import { ExternalLink } from "lucide-react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { Project } from "@/app/types";
@@ -29,7 +29,7 @@ export const ProjectCard = ({
             {link && (
               <Link href={link}>
                 <Button>
-                  Visit page <ExternalLink size={16} />
+                  Visit page <FaExternalLinkAlt size={16} />
                 </Button>
               </Link>
             )}

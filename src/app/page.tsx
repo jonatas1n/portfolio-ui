@@ -25,7 +25,7 @@ export default function Home() {
             </div>
           </div>
           <div className="-mt-60">
-            <Projects />
+            <FaChevronDown />
           </div>
           <Skills />
           <Experiences />
