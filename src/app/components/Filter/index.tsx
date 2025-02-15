@@ -24,7 +24,7 @@ export const Filter = ({ filtersList, onClear, onChange, technologies }: FilterP
       {technologies.length !== 0 && (
         <p
           onClick={onClear}
-          className="flex gap-1 hover:cursor-pointer text-sm items-center uppercase text-accent"
+          className="flex gap-1 cursor-pointer text-sm items-center uppercase text-accent"
         >
           <FaTimes size="16" /> Clear
         </p>
