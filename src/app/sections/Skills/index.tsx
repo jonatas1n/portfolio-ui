@@ -1,25 +1,22 @@
 "use client";
 
-import { getSkills } from "@/app/services";
+import useSWR from "swr";
+import { getSkills, makePath, SKILLS_ROUTE } from "@/app/services";
 import { SectionCard } from "@/app/components/SectionCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Skill } from "@/app/types";
 import { Modal } from "@/app/components/Modal";
 import { SkillButton } from "./SkillButton";
 
 export const Skills = () => {
-  const [skills, setSkills] = useState<Skill[]>([]);
   const [modalContent, setModalContent] = useState<
     Omit<Skill, "id"> | undefined
   >(undefined);
 
-  const clearModalContent = () => setModalContent(undefined);
+  const swrPath = makePath(SKILLS_ROUTE);
+  const { data: skillsList, error } = useSWR<Skill[]>(swrPath, getSkills);
 
-  useEffect(() => {
-    getSkills().then((fetchedSkills) => {
-      setSkills(fetchedSkills);
-    });
-  });
+  const clearModalContent = () => setModalContent(undefined);
 
   return (
     <SectionCard id="skills">
@@ -32,24 +29,30 @@ export const Skills = () => {
           {modalContent.description}
         </Modal>
       )}
-      <div className="grid gap-6">
-        <h3 className="text-4xl font-display font-bold">Skills</h3>
-        <div className="flex gap-10">
-          {skills?.map((skill) => (
-            <SkillButton
-              key={skill.id}
-              skill={skill.title}
-              onClick={() =>
-                setModalContent({
-                  title: skill.title,
-                  description: skill.description,
-                })
-              }
-            />
-          ))}
-          {skills?.length === 0 && <p className="text-lg">No skills found</p>}
+      {error ? (
+        "An error occured"
+      ) : (
+        <div className="grid gap-6">
+          <h3 className="text-4xl font-display font-bold">Skills</h3>
+          <div className="flex gap-10">
+            {skillsList?.map((skill) => (
+              <SkillButton
+                key={skill.id}
+                skill={skill.title}
+                onClick={() =>
+                  setModalContent({
+                    title: skill.title,
+                    description: skill.description,
+                  })
+                }
+              />
+            ))}
+            {skillsList?.length === 0 && (
+              <p className="text-lg">No skills found</p>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </SectionCard>
   );
 };

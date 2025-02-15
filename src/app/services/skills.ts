@@ -1,7 +1,7 @@
 import { makePath } from "@/app/services/utils";
 import { Skill } from "../types";
 
-const SKILLS_ROUTE = "skills";
+export const SKILLS_ROUTE = "skills";
 
 export const getSkills = async (): Promise<Skill[]> => {
   try {
