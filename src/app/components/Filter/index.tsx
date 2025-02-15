@@ -1,5 +1,5 @@
 import { Tag } from "../Tag";
-import { X } from "lucide-react";
+import { FaTimes } from "react-icons/fa";
 
 type FilterProps = {
   filtersList: string[];
@@ -10,8 +10,8 @@ type FilterProps = {
 
 export const Filter = ({ filtersList, onClear, onChange, technologies }: FilterProps) => {
   return (
-    <div className="flex gap-4 items-center font-body">
-      <p className="text-accent">Filter by technology:</p>
+    <div className="flex flex-wrap gap-4 items-center font-body">
+      <p className="text-accent">Filter:</p>
       {filtersList?.map((filter) => (
         <Tag
           key={filter}

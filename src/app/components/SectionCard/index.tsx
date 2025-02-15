@@ -11,7 +11,7 @@ export const SectionCard = ({
   return (
     <div
       id={id}
-      className="px-24 shadow shadow-accent text-dark py-9 rounded-2xl bg-light"
+      className="sm:px-24 shadow shadow-accent text-dark py-9 rounded-2xl bg-light px-4"
     >
       {children}
     </div>

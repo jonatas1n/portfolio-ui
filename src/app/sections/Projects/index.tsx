@@ -35,7 +35,7 @@ export const Projects = () => {
 
   return (
     <SectionCard id="projects">
-      <div className="grid gap-6">
+      <div className="grid gap-4">
         <h3 className="text-4xl font-bold font-display">Projects</h3>
         {projectsList?.length ? (
           <div className="grid gap-6">
@@ -49,7 +49,7 @@ export const Projects = () => {
               {projectsList?.map((project) => (
                 <ProjectCard key={project.id} {...project} />
               ))}
-              <div className="grid justify-end">
+              <div className="grid sm:justify-end justify-center">
                 <Button>See all projects</Button>
               </div>
             </div>
