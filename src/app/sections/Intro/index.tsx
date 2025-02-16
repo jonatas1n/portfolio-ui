@@ -1,8 +1,15 @@
+"use client";
+
 import { SectionCard } from "@/app/components/SectionCard";
+import * as motion from "motion/react-client";
 
 export const Intro = () => {
   return (
-    <div className="h-[85dvh] lg:h-dvh grid-rows-3 gap-4 grid">
+    <motion.div
+      initial={{ opacity: 0, transform: "rotateX(180deg)" }}
+      animate={{ opacity: 1, transform: "rotateX(0)" }}
+      className="h-[85dvh] lg:h-dvh grid-rows-3 gap-4 grid"
+    >
       <div className="row-start-2 row-end-4 lg:row-end-3 lg:self-center self-end">
         <SectionCard>
           <div className="sm:grid-cols-8 grid-cols-1 grid mt-3 sm:py-16">
@@ -30,6 +37,6 @@ export const Intro = () => {
           </div>
         </SectionCard>
       </div>
-    </div>
+    </motion.div>
   );
 };
