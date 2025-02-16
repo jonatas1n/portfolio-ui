@@ -9,6 +9,8 @@ import { Modal } from "@/app/components/Modal";
 import { SkillButton } from "./SkillButton";
 import DOMPurify from "dompurify";
 
+import * as motion from "motion/react-client";
+
 export const Skills = () => {
   const [modalContent, setModalContent] = useState<
     Omit<Skill, "id"> | undefined
@@ -38,19 +40,31 @@ export const Skills = () => {
         "An error occured"
       ) : (
         <div className="grid gap-6">
-          <h3 className="text-4xl font-display font-bold">Skills</h3>
+          <motion.h3
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-4xl font-display font-bold"
+          >
+            Skills
+          </motion.h3>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
-            {skillsList?.map((skill) => (
-              <SkillButton
+            {skillsList?.map((skill, index) => (
+              <motion.div
+                initial={{ transform: "translateX(1rem)", opacity: 0 }}
+                animate={{ opacity: 1, transform: "translateX(0)" }}
+                transition={{ delay: index * 0.06125 }}
                 key={skill.id}
-                skill={skill.title}
-                onClick={() =>
-                  setModalContent({
-                    title: skill.title,
-                    description: skill.description,
-                  })
-                }
-              />
+              >
+                <SkillButton
+                  skill={skill.title}
+                  onClick={() =>
+                    setModalContent({
+                      title: skill.title,
+                      description: skill.description,
+                    })
+                  }
+                />
+              </motion.div>
             ))}
             {skillsList?.length === 0 && (
               <p className="text-lg">No skills found</p>
