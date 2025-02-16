@@ -14,14 +14,14 @@ export const SideMenu = () => {
   const toggleOpenState = () => setIsOpen(!isOpen);
 
   return (
-    <div className="transition col-span-1 fixed sm:top-1/2 sm:bottom-auto bottom-24 sm:right-auto right-4 sm:bg-transparent sm:-translate-y-1/2">
-      <div className="grid md:hidden">
+    <div className="transition col-span-1 fixed lg:top-1/2 lg:bottom-auto bottom-24 lg:right-auto right-4 lg:bg-transparent lg:-translate-y-1/2">
+      <div className="grid lg:hidden">
         <FloatButton isActive={isOpen} onClick={toggleOpenState} />
       </div>
       <div
         className={`${
           isOpen ? "flex" : "hidden"
-        } sm:flex flex-col-reverse sm:flex-col transition font-display gap-5 sm:bg-transparent bg-accent sm:p-0 p-4 rounded-xl sm:rounded-none`}
+        } lg:flex flex-col-reverse lg:flex-col transition font-display gap-5 lg:bg-transparent bg-accent lg:p-0 p-4 rounded-xl lg:rounded-none`}
       >
         <ul className="grid gap-2">
           <Link href="#projects">

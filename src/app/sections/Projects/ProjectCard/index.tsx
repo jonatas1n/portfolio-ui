@@ -5,6 +5,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { Project } from "@/app/types";
+import DOMPurify from "dompurify";
 
 export const ProjectCard = ({
   technologies,
@@ -23,7 +24,7 @@ export const ProjectCard = ({
               <Tag key={index}>{technology}</Tag>
             ))}
           </div>
-          <div>{description}</div>
+          <div dangerouslySetInnerHTML={{__html:DOMPurify.sanitize(description)}}></div>
           <div className="flex gap-3 mt-4">
             {link && (
               <Link href={link}>
