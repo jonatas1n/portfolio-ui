@@ -1,5 +1,5 @@
 import { Experience } from "@/app/types";
-import { ExperienceHeader } from "../ExperienceHeader";
+import { ExperienceCard } from "../ExperienceCard";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -7,18 +7,21 @@ import {
 
 type ExperiencesTimelineProps = {
   experiencesList: Experience[];
-}
+};
 
-export const ExperiencesTimeline = ({ experiencesList }: ExperiencesTimelineProps) => {
+export const ExperiencesTimeline = ({
+  experiencesList,
+}: ExperiencesTimelineProps) => {
   return (
-    <VerticalTimeline lineColor="#E5D9C0">
-      {experiencesList?.map(({ description, ...experience }) => (
+    <VerticalTimeline layout="1-column-left" lineColor="#E5D9C0">
+      {experiencesList?.map((experience) => (
         <VerticalTimelineElement
+          position="right"
           iconStyle={{
             background: "#1E1E1E",
             width: 24,
             height: 24,
-            marginLeft: -12,
+            marginLeft: 8,
             marginTop: 16,
           }}
           contentStyle={{
@@ -26,11 +29,11 @@ export const ExperiencesTimeline = ({ experiencesList }: ExperiencesTimelineProp
             borderRadius: ".5rem",
             boxShadow: "0 0",
           }}
+          dateClassName="opacity-full"
           contentArrowStyle={{ borderRightColor: "#E5D9C0" }}
           key={experience.id}
-          date={<ExperienceHeader {...experience} />}
         >
-          {description}
+          <ExperienceCard {...experience} />
         </VerticalTimelineElement>
       ))}
     </VerticalTimeline>
