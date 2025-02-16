@@ -10,6 +10,7 @@ import { SkillButton } from "./SkillButton";
 import DOMPurify from "dompurify";
 
 import * as motion from "motion/react-client";
+import { AnimatePresence } from "motion/react";
 
 export const Skills = () => {
   const [modalContent, setModalContent] = useState<
@@ -23,19 +24,17 @@ export const Skills = () => {
 
   return (
     <SectionCard id="skills">
-      {modalContent && (
-        <Modal
-          title={modalContent.title}
-          isOpen={!!modalContent}
-          onClose={clearModalContent}
-        >
-          <div
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(modalContent.description),
-            }}
-          />
-        </Modal>
-      )}
+      <AnimatePresence>
+        {modalContent && (
+          <Modal title={modalContent.title} onClose={clearModalContent}>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(modalContent.description),
+              }}
+            />
+          </Modal>
+        )}
+      </AnimatePresence>
       {error ? (
         "An error occured"
       ) : (
