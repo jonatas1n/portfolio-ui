@@ -41,7 +41,7 @@ export const SideMenu = () => {
             </Link>
           ))}
         </ul>
-        <hr />
+        <motion.hr initial={{ opacity: 0, width: 0 }} animate={{opacity: 1, width: "unset"}} />
         <div className="text-light gap-3 grid">
           <motion.p
             initial={{ opacity: 0, transform: "translateX(1rem)" }}
