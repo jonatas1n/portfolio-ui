@@ -9,7 +9,11 @@ import { Project } from "@/app/types";
 import { getProjectFilters, makePath, PROJECTS_ROUTE } from "@/app/services";
 import { Filter } from "@/app/components/Filter";
 
+import * as motion from "motion/react-client";
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const NO_PROJECTS_TEXT = "No projects found";
+const PROJECTS_TITLE = "Creations";
 
 export const Projects = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
@@ -36,7 +40,13 @@ export const Projects = () => {
   return (
     <SectionCard id="projects">
       <div className="grid gap-4">
-        <h3 className="text-4xl font-bold font-display">Projects</h3>
+        <motion.h3
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-4xl font-display font-bold"
+        >
+          {PROJECTS_TITLE}
+        </motion.h3>
         {projectsList?.length ? (
           <div className="grid gap-6">
             <Filter
@@ -58,7 +68,7 @@ export const Projects = () => {
           error && "An Error occurred"
         )}
         {projectsList?.length === 0 && (
-          <p className="text-lg">No projects found</p>
+          <p className="text-lg">{NO_PROJECTS_TEXT}</p>
         )}
       </div>
     </SectionCard>
