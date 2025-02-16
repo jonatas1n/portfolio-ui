@@ -14,7 +14,11 @@ import { Experience } from "@/app/types";
 import { Filter } from "@/app/components/Filter";
 import { ExperiencesTimeline } from "./ExperiencesTimeline";
 
+import * as motion from "motion/react-client";
+
 import "react-vertical-timeline-component/style.min.css";
+
+const EXPERIENCES_TITLE = "Journey";
 
 export const Experiences = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
@@ -44,7 +48,13 @@ export const Experiences = () => {
   return (
     <SectionCard id="experiences">
       <div className="grid gap-4">
-        <h3 className="text-4xl font-display font-bold">My Journey</h3>
+        <motion.h3
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-4xl font-display font-bold"
+        >
+          {EXPERIENCES_TITLE}
+        </motion.h3>
         {experiencesList?.length ? (
           <div className="grid gap-6">
             <Filter
