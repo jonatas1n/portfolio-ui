@@ -16,8 +16,6 @@ import { ExperiencesTimeline } from "./ExperiencesTimeline";
 
 import * as motion from "motion/react-client";
 
-import "react-vertical-timeline-component/style.min.css";
-
 const EXPERIENCES_TITLE = "Journey";
 
 export const Experiences = () => {
