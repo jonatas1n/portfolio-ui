@@ -1,4 +1,5 @@
 import { FaDocker, FaPython, FaReact } from "react-icons/fa"
+import { GrGraphQl } from "react-icons/gr"
 import { SiJavascript, SiTypescript } from "react-icons/si"
 
 export const skillIcons = {
@@ -7,4 +8,5 @@ export const skillIcons = {
   typescript: SiTypescript,
   python: FaPython,
   javascript: SiJavascript,
+  graphql: GrGraphQl,
 }
