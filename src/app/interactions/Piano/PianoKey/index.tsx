@@ -16,7 +16,7 @@ export const PianoKey = ({
   left = 0,
   sharp = false,
 }: PianoKeyProps) => {
-  const className = sharp ? "absolute bg-accent w-10 h-1/2" : "w-16 h-full";
+  const className = sharp ? "absolute bg-accent w-10 h-32" : "w-16 h-60";
 
   useEffect(() => {
     let isKeyPressed = false;
@@ -46,6 +46,7 @@ export const PianoKey = ({
       initial={{ translateY: -32, opacity: 0 }}
       animate={{ translateY: 0, opacity: 1 }}
       whileTap={{ background: "#E5D9C0", scaleX: 0.9 }}
+      onClick={() => onAttack(note)}
       style={{ left: sharp ? `${left * 4 + 2.75}rem` : "auto" }}
       className={
         "border border-t-0 cursor-pointer border-light rounded-b-lg " +

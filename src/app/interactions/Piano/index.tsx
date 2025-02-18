@@ -19,29 +19,31 @@ export const Piano = () => {
   };
 
   return (
-    <div className="mx-auto flex h-1/2 relative">
-      {notes.map(({ note, key }) => (
-        <PianoKey
-          key={note}
-          note={note}
-          onAttack={attackNote}
-          binding={key}
-        />
-      ))}
+    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 lg:scale-100 md:scale-x-75 sm:scale-x-[.65] scale-x-[.4]">
+      <div className="flex mx-auto">
+        {notes.map(({ note, key }) => (
+          <PianoKey
+            key={note}
+            note={note}
+            onAttack={attackNote}
+            binding={key}
+          />
+        ))}
 
-      {sharpNotes.map(
-        (note, index) =>
-          note.note && (
-            <PianoKey
-              sharp
-              note={note.note}
-              left={index}
-              key={note.note + index}
-              onAttack={attackNote}
-              binding={note.key}
-            />
-          )
-      )}
+        {sharpNotes.map(
+          (note, index) =>
+            note.note && (
+              <PianoKey
+                sharp
+                note={note.note}
+                left={index}
+                key={note.note + index}
+                onAttack={attackNote}
+                binding={note.key}
+              />
+            )
+        )}
+      </div>
     </div>
   );
 };
