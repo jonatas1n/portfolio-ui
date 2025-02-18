@@ -3,6 +3,7 @@
 import { SectionCard } from "@/app/components/SectionCard";
 import { Piano } from "@/app/interactions/Piano";
 import * as motion from "motion/react-client";
+import { FaArrowDown } from "react-icons/fa";
 
 export const Intro = () => {
   return (
@@ -39,6 +40,20 @@ export const Intro = () => {
               </div>
             </div>
           </SectionCard>
+          <div className="md:flex text-light items-center gap-2 justify-center translate-y-40 hidden opacity-25">
+            Scroll to more
+            <motion.div
+              initial={{ translateY: -5 }}
+              animate={{ translateY: 5 }}
+              transition={{
+                repeat: Infinity,
+                duration: 1.5,
+                repeatType: "reverse",
+              }}
+            >
+              <FaArrowDown />
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </motion.div>
