@@ -12,7 +12,7 @@ export const SkillButton = ({ onClick, skill }: SkillButtonProps) => {
     : FaCircleDot;
 
   return (
-    <div className="cursor-pointer grid justify-items-center gap-1">
+    <div className="cursor-pointer grid justify-items-center gap-1 text-center">
       <div onClick={onClick} className="rounded-lg border-accent bg-card p-4">
         {icon({ size: 36 })}
       </div>
