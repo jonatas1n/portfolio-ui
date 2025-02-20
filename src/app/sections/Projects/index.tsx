@@ -12,7 +12,7 @@ import { Filter } from "@/app/components/Filter";
 import * as motion from "motion/react-client";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
-const NO_PROJECTS_TEXT = "No projects found";
+const NO_PROJECTS_TEXT = "No creations found";
 const PROJECTS_TITLE = "Creations";
 
 export const Projects = () => {
