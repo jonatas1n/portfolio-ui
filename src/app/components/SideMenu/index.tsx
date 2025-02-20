@@ -34,7 +34,7 @@ export const SideMenu = () => {
                 initial={{ opacity: 0, scale: 1.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 whileHover={{ scale: 1.125 }}
-                className="bg-light text-dark py-1 px-4 hover:text-light hover:bg-accent rounded-xl font-semibold text-lg"
+                className="bg-light text-center text-dark py-1 px-4 hover:text-light hover:bg-accent rounded-xl font-semibold text-lg"
               >
                 {link.label}
               </motion.li>
@@ -42,15 +42,15 @@ export const SideMenu = () => {
           ))}
         </ul>
         <motion.hr initial={{ opacity: 0, width: 0 }} animate={{opacity: 1, width: "unset"}} />
-        <div className="text-light gap-3 grid">
+        <div className="text-light gap-5 grid">
           <motion.p
             initial={{ opacity: 0, transform: "translateX(1rem)" }}
             animate={{ opacity: 1, transform: "translateX(0)" }}
-            className="font-bold"
+            className="font-bold text-center"
           >
             Get in touch
           </motion.p>
-          <ul className="flex justify-between font-body">
+          <ul className="flex justify-around font-body">
             {Object.values(social).map((social, index) => (
               <Link
                 key={social.link}
@@ -62,7 +62,7 @@ export const SideMenu = () => {
                   initial={{ opacity: 0, transform: "translateY(1.5rem)" }}
                   animate={{ opacity: 1, transform: "translateY(0)" }}
                   transition={{ delay: 0.06125 * index }}
-                  className="flex hover:bg-accent hover:text-light rounded-full bg-light text-dark p-1"
+                  className="flex hover:bg-accent hover:text-light hover:scale-110 rounded-full bg-light text-dark p-1"
                 >
                   {social.icon({})}
                 </motion.li>
