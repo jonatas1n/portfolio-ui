@@ -4,6 +4,9 @@ import { SectionCard } from "@/app/components/SectionCard";
 import * as motion from "motion/react-client";
 import { FaArrowDown } from "react-icons/fa";
 
+const BIOGRAPHY_PHRASE =
+  "Sou um desenvolvedor fullstack apaixonado por criar soluções inovadoras, sempre focado em melhorar a experiência do usuário e otimizar processos por meio de tecnologias avançadas e práticas ágeis.";
+
 export const Intro = () => {
   return (
     <motion.div className="h-[85dvh] lg:h-dvh grid-rows-3 gap-4 grid">
@@ -29,10 +32,7 @@ export const Intro = () => {
                     and this is my portfolio 👨🏿‍💻
                   </h3>
                   <div className="text-base font-body py-4 border-y border-dark">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Mauris sed rhoncus libero. Vestibulum ante ipsum primis in
-                    faucibus orci luctus et ultrices posuere cubilia curae; Sed
-                    placerat sodales dignissim.
+                    {BIOGRAPHY_PHRASE}
                   </div>
                 </div>
               </div>
