@@ -12,7 +12,6 @@ import { Filter } from "@/app/components/Filter";
 import * as motion from "motion/react-client";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
-const NO_PROJECTS_TEXT = "No creations found";
 const PROJECTS_TITLE = "Creations";
 
 export const Projects = () => {
@@ -36,6 +35,10 @@ export const Projects = () => {
   }, []);
 
   const clearFilters = () => setTechnologies([]);
+
+  if (!projectsList && !error) {
+    return null;
+  }
 
   return (
     <SectionCard id="projects">
@@ -66,9 +69,6 @@ export const Projects = () => {
           </div>
         ) : (
           error && "An Error occurred"
-        )}
-        {projectsList?.length === 0 && (
-          <p className="text-lg">{NO_PROJECTS_TEXT}</p>
         )}
       </div>
     </SectionCard>
