@@ -1,14 +1,12 @@
 "use client";
 
 import { SectionCard } from "@/app/components/SectionCard";
-import { Piano } from "@/app/interactions/Piano";
 import * as motion from "motion/react-client";
 import { FaArrowDown } from "react-icons/fa";
 
 export const Intro = () => {
   return (
     <motion.div className="h-[85dvh] lg:h-dvh grid-rows-3 gap-4 grid">
-      <Piano />
       <div className="row-start-2 row-end-4 lg:row-end-3 lg:self-center self-end">
         <motion.div
           initial={{ opacity: 0, transform: "translateX(-25dvh)" }}
