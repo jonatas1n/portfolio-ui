@@ -18,7 +18,7 @@ export const SideMenu = () => {
   const toggleOpenState = () => setIsOpen(!isOpen);
 
   return (
-    <div className="transition col-span-1 fixed lg:top-1/2 lg:bottom-auto bottom-24 lg:right-auto right-4 lg:bg-transparent lg:-translate-y-1/2">
+    <div className="transition col-span-1 z-50 fixed lg:top-1/2 lg:bottom-auto bottom-24 lg:right-auto right-4 lg:bg-transparent lg:-translate-y-1/2">
       <div className="grid lg:hidden">
         <FloatButton isActive={isOpen} onClick={toggleOpenState} />
       </div>
