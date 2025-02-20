@@ -1,12 +1,29 @@
-import { FaDocker, FaPython, FaReact } from "react-icons/fa"
-import { GrGraphQl } from "react-icons/gr"
-import { SiJavascript, SiTypescript } from "react-icons/si"
+import { DiSass } from "react-icons/di"
+import { FaDocker, FaNodeJs, FaPython, FaReact } from "react-icons/fa"
+import { FaDartLang, FaGolang } from "react-icons/fa6"
+import { GrGraphQl, GrMysql } from "react-icons/gr"
+import { RiNextjsFill } from "react-icons/ri"
+import { SiDjango, SiExpress, SiFlask, SiJavascript, SiMongodb, SiMui, SiPostgresql, SiRubyonrails, SiTypescript } from "react-icons/si"
 
 export const skillIcons = {
-  react: FaReact,
+  "react.js": FaReact,
   docker: FaDocker,
   typescript: SiTypescript,
   python: FaPython,
   javascript: SiJavascript,
   graphql: GrGraphQl,
+  golang: FaGolang,
+  "express.js": SiExpress,
+  mui: SiMui,
+  flask: SiFlask,
+  mongodb: SiMongodb,
+  postgresql: SiPostgresql,
+  "node.js": FaNodeJs,
+  dart: FaDartLang,
+  "react native": FaReact,
+  "ruby on rails": SiRubyonrails,
+  "next.js": RiNextjsFill,
+  django: SiDjango,
+  sass: DiSass,
+  mysql: GrMysql,
 }
