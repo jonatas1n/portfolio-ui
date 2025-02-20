@@ -4,13 +4,13 @@ import useSWR from "swr";
 import { getSkills, makePath, SKILLS_ROUTE } from "@/app/services";
 import { SectionCard } from "@/app/components/SectionCard";
 import { useState } from "react";
-import { Skill } from "@/app/types";
+import { Skill, SkillGroupType } from "@/app/types";
 import { Modal } from "@/app/components/Modal";
-import { SkillButton } from "./SkillButton";
 import DOMPurify from "dompurify";
 
 import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
+import { SkillGroup } from "./SkillGroup";
 
 export const Skills = () => {
   const [modalContent, setModalContent] = useState<
@@ -18,7 +18,8 @@ export const Skills = () => {
   >(undefined);
 
   const swrPath = makePath(SKILLS_ROUTE);
-  const { data: skillsList, error } = useSWR<Skill[]>(swrPath, getSkills);
+  const { data: skillsGroupsList, error } = useSWR<SkillGroupType>(swrPath, getSkills);
+  console.log(skillsGroupsList);
 
   const clearModalContent = () => setModalContent(undefined);
 
@@ -46,26 +47,17 @@ export const Skills = () => {
           >
             Skills
           </motion.h3>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
-            {skillsList?.map((skill, index) => (
+          <div className="grid gap-10">
+            {Object.entries(skillsGroupsList ?? {})?.map(([groupTitle, skillsList]) => (
               <motion.div
-                initial={{ transform: "translateX(1rem)", opacity: 0 }}
-                animate={{ opacity: 1, transform: "translateX(0)" }}
-                transition={{ delay: index * 0.06125 }}
-                key={skill.id}
+                initial={{ transform: "translateX(0)", opacity: 0 }}
+                whileInView={{ opacity: 1, transform: "translateX(1)" }}
+                key={groupTitle}
               >
-                <SkillButton
-                  skill={skill.title}
-                  onClick={() =>
-                    setModalContent({
-                      title: skill.title,
-                      description: skill.description,
-                    })
-                  }
-                />
+                <SkillGroup title={groupTitle} skills={skillsList} onClick={(skill: Skill) => setModalContent(skill)} />
               </motion.div>
             ))}
-            {skillsList?.length === 0 && (
+            {Object.keys(skillsGroupsList ?? {}).length === 0 && (
               <p className="text-lg">No skills found</p>
             )}
           </div>
