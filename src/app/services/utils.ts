@@ -1,7 +1,6 @@
-import { API_PATH } from "../constants";
-
 export const makePath = (route: string, params?: Record<string, string | string[]>) => {
-  let url = `${API_PATH}/${route}`;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  let url = `${apiUrl}/${route}`;
   
   if (params) {
     const searchParams = new URLSearchParams();
