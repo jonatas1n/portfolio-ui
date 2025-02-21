@@ -78,7 +78,7 @@ export const Intro = () => {
                     Hey!{" "}
                     <motion.div
                       animate={{ rotate: [12, -12, 12, -12, 12] }}
-                      transition={{ repeat: 2, duration: 1, delay: 0 }}
+                      transition={{ duration: 1, delay: 0 }}
                       onAnimationComplete={() => setIntro(true)}
                     >
                       ✋🏿
