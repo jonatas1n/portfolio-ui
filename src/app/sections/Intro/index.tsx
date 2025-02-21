@@ -7,10 +7,7 @@ import { SoundPad } from "@/app/interactions/SoundPad";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 
-const BIOGRAPHY_PHRASE =
-  "I am a full-stack developer passionate about creating innovative solutions, always focused on improving user experience and optimizing processes through advanced technologies and agile practices.";
-
-const SCROLL_MESSAGE = "Scroll to more";
+import { BIOGRAPHY_PHRASE, SCROLL_MESSAGE } from "./constants";
 
 export const Intro = () => {
   const [intro, setIntro] = useState(false);
