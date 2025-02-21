@@ -28,8 +28,8 @@ export const Intro = () => {
                   <motion.div
                     initial={{ opacity: 0, x: -64 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -64, scale: 0 }}
-                    className="flex absolute col-span-full gap-1 font-display text-6xl font-bold justify-center"
+                    exit={{ opacity: 0, x: 64 }}
+                    className="flex absolute transform top-1/4 text-center h-full w-full col-span-full gap-1 font-display text-6xl font-bold justify-center"
                   >
                     Hey!{" "}
                     <motion.div
