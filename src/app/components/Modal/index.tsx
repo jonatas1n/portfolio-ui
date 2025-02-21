@@ -17,7 +17,7 @@ export const Modal = ({
     <div className="z-20">
       <div
         onClick={onClose}
-        className="fixed w-dvw h-dvh bottom-0 top-0 left-0 right-0 z-30 backdrop-brightness-50"
+        className="fixed w-dvw h-dvh bottom-0 top-0 left-0 right-0 z-50 backdrop-brightness-50"
       />
       <motion.div
         initial={{ transform: "translateY(-3rem)", opacity: 0 }}

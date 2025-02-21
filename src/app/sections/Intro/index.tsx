@@ -22,7 +22,7 @@ export const Intro = () => {
           transition={{ duration: 0.75 }}
         >
           <SectionCard>
-            <div className="sm:grid-cols-8 grid-cols-1 grid mt-3 sm:py-16 relative min-h-52">
+            <div className="sm:grid-cols-8 grid-cols-1 grid mt-3 sm:py-16 relative min-h-52 overflow-hidden">
               <AnimatePresence>
                 {!intro && (
                   <motion.div
