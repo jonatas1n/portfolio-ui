@@ -62,7 +62,7 @@ export const SideMenu = () => {
                   initial={{ opacity: 0, transform: "translateY(1.5rem)" }}
                   animate={{ opacity: 1, transform: "translateY(0)" }}
                   transition={{ delay: 0.06125 * index }}
-                  className="flex hover:bg-accent hover:text-light hover:scale-110 rounded-full bg-light text-dark p-1"
+                  className="flex hover:bg-accent transition-all hover:text-light hover:scale-110 rounded-full bg-light text-dark p-1"
                 >
                   {social.icon({})}
                 </motion.li>
