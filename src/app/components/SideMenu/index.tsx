@@ -29,7 +29,7 @@ export const SideMenu = () => {
       >
         <ul className="grid gap-2">
           {sectionsLinks.map((link) => (
-            <Link key={link.link} href="#projects">
+            <Link key={link.link} href={link.link}>
               <motion.li
                 initial={{ opacity: 0, scale: 1.5 }}
                 animate={{ opacity: 1, scale: 1 }}
