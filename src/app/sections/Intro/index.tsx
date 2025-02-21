@@ -15,7 +15,7 @@ export const Intro = () => {
   return (
     <motion.div className="h-[85dvh] min-h-[850px] lg:h-screen grid-rows-3 gap-4 grid">
       <AnimatePresence>{intro && <SoundPad />}</AnimatePresence>
-      <div className="row-start-2 row-end-4 lg:row-end-3 lg:self-start self-end">
+      <div className="row-start-2 row-end-4 lg:row-end-3 lg:self-start self-center">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
