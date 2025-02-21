@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { SoundPadItem } from "./SoundPadItem";
 import { MdTouchApp } from "react-icons/md";
 import * as motion from "motion/react-client";
@@ -19,6 +19,21 @@ export const SoundPad = () => {
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [oscillator, setOscillator] = useState<OscillatorNode | null>(null);
 
+  const stopNote = useCallback(() => {
+    if (!oscillator) return;
+    oscillator.stop();
+    oscillator.disconnect();
+    setOscillator(null);
+  }, [oscillator]);
+  
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) stopNote();
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [stopNote]);
+
   const startNote = (note: number) => {
     const ctx =
       audioContext || new (window.AudioContext || window.AudioContext)();
@@ -36,12 +51,6 @@ export const SoundPad = () => {
 
     osc.start();
     setOscillator(osc);
-  };
-
-  const stopNote = () => {
-    if (!oscillator) return;
-    oscillator.stop();
-    setOscillator(null);
   };
 
   return (
