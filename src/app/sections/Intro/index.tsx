@@ -12,7 +12,7 @@ const SCROLL_MESSAGE = "Scroll to more";
 
 export const Intro = () => {
   return (
-    <motion.div className="h-[85dvh] lg:h-dvh grid-rows-3 gap-4 grid">
+    <motion.div className="h-[85dvh] min-h-[850px] lg:h-screen grid-rows-3 gap-4 grid">
       <SoundPad />
       <div className="row-start-2 row-end-4 lg:row-end-3 lg:self-start self-end">
         <motion.div
