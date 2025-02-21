@@ -36,7 +36,7 @@ export const Projects = () => {
 
   const clearFilters = () => setTechnologies([]);
 
-  if (!projectsList && !error) {
+  if (projectsList?.length === 0) {
     return null;
   }
 
