@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { SoundPadItem } from "./SoundPadItem";
 import { MdTouchApp } from "react-icons/md";
 import * as motion from "motion/react-client";
@@ -17,24 +17,34 @@ const TOUCH_MESSAGE = "Touch to interact";
 
 export const SoundPad = () => {
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
-  const [oscillator, setOscillator] = useState<OscillatorNode | null>(null);
+  const oscillatorsRef = useRef<Map<number, OscillatorNode>>(new Map());
 
-  const stopNote = useCallback(() => {
-    if (!oscillator) return;
-    oscillator.stop();
-    oscillator.disconnect();
-    setOscillator(null);
-  }, [oscillator]);
-  
+  const stopNote = useCallback((frequency: number) => {
+    const osc = oscillatorsRef.current.get(frequency);
+    if (!osc) return;
+    osc.stop();
+    osc.disconnect();
+    oscillatorsRef.current.delete(frequency);
+  }, []);
+
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (document.hidden) stopNote();
+      if (document.hidden) {
+        oscillatorsRef.current.forEach((osc) => {
+          osc.stop();
+          osc.disconnect();
+        });
+        oscillatorsRef.current.clear();
+      }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, [stopNote]);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
 
-  const startNote = (note: number) => {
+  const startNote = (frequency: number) => {
+    if (oscillatorsRef.current.has(frequency)) return; // Evita duplicação da nota
+
     const ctx =
       audioContext || new (window.AudioContext || window.AudioContext)();
     setAudioContext(ctx);
@@ -43,14 +53,14 @@ export const SoundPad = () => {
     const gainNode = ctx.createGain();
 
     osc.type = "sine";
-    osc.frequency.setValueAtTime(note, ctx.currentTime);
-
+    osc.frequency.setValueAtTime(frequency, ctx.currentTime);
     gainNode.gain.setValueAtTime(0.5, ctx.currentTime);
+
     osc.connect(gainNode);
     gainNode.connect(ctx.destination);
 
     osc.start();
-    setOscillator(osc);
+    oscillatorsRef.current.set(frequency, osc);
   };
 
   return (
@@ -73,8 +83,8 @@ export const SoundPad = () => {
               >
                 <SoundPadItem
                   frequency={frequency}
-                  stopNote={stopNote}
-                  startNote={startNote}
+                  stopNote={() => stopNote(frequency)}
+                  startNote={() => startNote(frequency)}
                 />
               </motion.div>
             ))}
