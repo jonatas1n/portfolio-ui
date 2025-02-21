@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SoundPadItem } from "./SoundPadItem";
+import { MdTouchApp } from "react-icons/md";
 
 const NOTE_FREQUENCIES = {
   C: { sharp: 277.18, normal: 261.63, diminished: 246.94 },
@@ -58,8 +59,8 @@ export const SoundPad = () => {
           </div>
         ))}
       </div>
-      <h4 className="font-semibold row-start-3 text-light text-opacity-30 self-center font-display text-center">
-        {TOUCH_MESSAGE}
+      <h4 className="font-semibold row-start-3 text-light text-opacity-30 self-center font-display text-center flex items-center gap-1 justify-center">
+        <MdTouchApp /> {TOUCH_MESSAGE}
       </h4>
     </div>
   );
