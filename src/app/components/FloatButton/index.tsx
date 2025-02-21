@@ -11,7 +11,7 @@ export const FloatButton = ({ onClick, isActive }: FloatButtonProps) => {
       onClick={onClick}
       className="transition fixed bottom-2 p-4 shadow-lg border-2 border-light right-6 rounded-full bg-accent text-light"
     >
-      {isActive ? <FaTimes /> : <FaEllipsis />}
+      {isActive ? <FaTimes /> : <FaEllipsis className="rotate-90" />}
     </button>
   );
 };
