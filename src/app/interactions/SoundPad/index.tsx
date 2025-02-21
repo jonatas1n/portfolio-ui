@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SoundPadItem } from "./SoundPadItem";
 import { MdTouchApp } from "react-icons/md";
+import * as motion from "motion/react-client";
 
 const NOTE_FREQUENCIES = {
   C: { sharp: 277.18, normal: 261.63, diminished: 246.94 },
@@ -46,22 +47,39 @@ export const SoundPad = () => {
   return (
     <div className="grid align-center grid-rows-3">
       <div className="grid grid-cols-7 row-end-3 row-start-1 rounded-b-2xl overflow-hidden">
-        {Object.entries(NOTE_FREQUENCIES).map(([note, frequencies]) => (
-          <div key={note} className="grid grid-rows-3">
-            {Object.values(frequencies).map((frequency) => (
-              <SoundPadItem
+        {Object.entries(NOTE_FREQUENCIES).map(([note, frequencies], index) => (
+          <motion.div
+            transition={{ delay: index * 0.1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            key={note}
+            className="grid grid-rows-3"
+          >
+            {Object.values(frequencies).map((frequency, frequencyIndex) => (
+              <motion.div
+                transition={{ delay: frequencyIndex * 0.1 + index * 0.1 }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
                 key={frequency}
-                frequency={frequency}
-                stopNote={stopNote}
-                startNote={startNote}
-              />
+              >
+                <SoundPadItem
+                  frequency={frequency}
+                  stopNote={stopNote}
+                  startNote={startNote}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ))}
       </div>
-      <h4 className="font-semibold row-start-3 text-light text-opacity-30 self-center font-display text-center flex items-center gap-1 justify-center">
+      <motion.h4
+        initial={{ opacity: 0, translateY: -20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="font-semibold row-start-3 text-light text-opacity-30 self-center font-display text-center flex items-center gap-1 justify-center"
+      >
         <MdTouchApp /> {TOUCH_MESSAGE}
-      </h4>
+      </motion.h4>
     </div>
   );
 };

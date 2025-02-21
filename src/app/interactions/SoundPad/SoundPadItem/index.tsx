@@ -27,7 +27,7 @@ export const SoundPadItem = ({
         startNote(frequency);
       }}
       onTouchEnd={stopNote}
-      className="bg-accent bg-opacity-40 border-dark border text-dark font-display text-2xl"
+      className="bg-accent bg-opacity-40 border-dark border h-full w-full text-dark font-display text-2xl"
     />
   );
 };
