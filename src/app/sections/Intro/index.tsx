@@ -8,6 +8,8 @@ import { SoundPad } from "@/app/interactions/SoundPad";
 const BIOGRAPHY_PHRASE =
   "I am a full-stack developer passionate about creating innovative solutions, always focused on improving user experience and optimizing processes through advanced technologies and agile practices.";
 
+const SCROLL_MESSAGE = "Scroll to more";
+
 export const Intro = () => {
   return (
     <motion.div className="h-[85dvh] lg:h-dvh grid-rows-3 gap-4 grid">
@@ -41,7 +43,7 @@ export const Intro = () => {
             </div>
           </SectionCard>
           <div className="md:flex text-light items-center gap-2 justify-center translate-y-40 hidden opacity-25">
-            Scroll to more
+            {SCROLL_MESSAGE}
             <motion.div
               initial={{ translateY: -5 }}
               animate={{ translateY: 5 }}
