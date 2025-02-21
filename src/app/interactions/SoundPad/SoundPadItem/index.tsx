@@ -13,8 +13,9 @@ export const SoundPadItem = ({
 }: SoundPadItemProps) => {
   return (
     <motion.button
+      initial={{ opacity: 0.5 }}
       whileHover={{ opacity: 0.15 }}
-      whileTap={{ scale: 0.9, opacity: 0.15 }}
+      whileTap={{ opacity: 0.25 }}
       onMouseDown={() => startNote(frequency)}
       onMouseUp={stopNote}
       onMouseEnter={(e) => {
@@ -26,7 +27,7 @@ export const SoundPadItem = ({
         startNote(frequency);
       }}
       onTouchEnd={stopNote}
-      className="bg-accent border-dark border text-dark font-display text-2xl opacity-5"
+      className="bg-accent bg-opacity-40 border-dark border text-dark font-display text-2xl"
     />
   );
 };
