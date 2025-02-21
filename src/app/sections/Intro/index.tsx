@@ -5,7 +5,7 @@ import * as motion from "motion/react-client";
 import { FaArrowDown } from "react-icons/fa";
 
 const BIOGRAPHY_PHRASE =
-  "Sou um desenvolvedor fullstack apaixonado por criar soluções inovadoras, sempre focado em melhorar a experiência do usuário e otimizar processos por meio de tecnologias avançadas e práticas ágeis.";
+  "I am a full-stack developer passionate about creating innovative solutions, always focused on improving user experience and optimizing processes through advanced technologies and agile practices.";
 
 export const Intro = () => {
   return (
