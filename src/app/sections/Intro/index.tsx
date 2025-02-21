@@ -21,19 +21,19 @@ export const Intro = () => {
           <SectionCard>
             <div className="sm:grid-cols-8 grid-cols-1 grid mt-3 sm:py-16">
               <div className="lg:col-span-7 col-span-full gap-6 grid">
-                <div className="grid sm:gap-9 gap-6 md:gap-3">
+                <div className="grid sm:gap-9 gap-4 md:gap-3 md:px-0 px-2">
                   <div className="font-display">
-                    <h1 className="lg:text-6xl md:text-5xl text-4xl font-bold leading-10">
+                    <h1 className="lg:text-6xl md:text-5xl text-3xl font-bold leading-10">
                       I&apos;m Jônatas Gomes
                     </h1>
                     <h4 className="sm:text-xl font-bold text-accent leading-10">
                       (but you can call me Johny)
                     </h4>
                   </div>
-                  <h3 className="sm:text-3xl text-2xl font-bold font-display">
+                  <h3 className="sm:text-3xl text-xl font-bold font-display">
                     and this is my portfolio 👨🏿‍💻
                   </h3>
-                  <div className="text-base font-body py-4 border-y border-dark">
+                  <div className="text-base font-body py-2 md:py-4 border-y border-dark">
                     {BIOGRAPHY_PHRASE}
                   </div>
                 </div>
