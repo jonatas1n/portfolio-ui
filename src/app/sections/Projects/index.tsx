@@ -43,7 +43,7 @@ export const Projects = () => {
 
   const clearFilters = () => setTechnologies([]);
 
-  if (projectsList?.length === 0) {
+  if (projectsList?.length === 0 && !isLoading) {
     return null;
   }
 
@@ -53,6 +53,7 @@ export const Projects = () => {
         <motion.h3
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
           className="text-4xl font-display font-bold"
         >
           {PROJECTS_TITLE}
