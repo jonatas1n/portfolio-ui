@@ -45,11 +45,12 @@ export const Skills = () => {
           <motion.h3
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
             className="text-4xl font-display font-bold"
           >
             Skills
           </motion.h3>
-          {isLoading && <Spinner />}
+          {isLoading && Object.keys(skillsGroupsList ?? {}).length === 0 && <Spinner />}
           <div className="grid gap-10">
             {Object.entries(skillsGroupsList ?? {})?.map(([groupTitle, skillsList]) => (
               <motion.div
@@ -60,7 +61,7 @@ export const Skills = () => {
                 <SkillGroup title={groupTitle} skills={skillsList} onClick={(skill: Skill) => setModalContent(skill)} />
               </motion.div>
             ))}
-            {Object.keys(skillsGroupsList ?? {}).length === 0 && (
+            {Object.keys(skillsGroupsList ?? {}).length === 0 && !isLoading && (
               <p className="text-lg">No skills found</p>
             )}
           </div>
