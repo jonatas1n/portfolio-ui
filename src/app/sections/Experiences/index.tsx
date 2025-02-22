@@ -23,10 +23,11 @@ export const Experiences = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
   const [technologies, setTechnologies] = useState<string[]>([]);
   const swrPath = makePath(EXPERIENCES_ROUTE, { technologies });
-  const { data: experiencesList, error, isLoading } = useSWR<Experience[]>(
-    swrPath,
-    getExperiences
-  );
+  const {
+    data: experiencesList,
+    error,
+    isLoading,
+  } = useSWR<Experience[]>(swrPath, getExperiences);
 
   const handleChangeFilters = (filter: string) => {
     if (technologies.includes(filter)) {
@@ -57,12 +58,14 @@ export const Experiences = () => {
         {isLoading && <Spinner />}
         {experiencesList?.length ? (
           <div className="grid gap-6">
-            <Filter
-              filtersList={filtersList}
-              onClear={clearFilters}
-              onChange={handleChangeFilters}
-              technologies={technologies}
-            />
+            {filtersList.length > 1 && (
+              <Filter
+                filtersList={filtersList}
+                onClear={clearFilters}
+                onChange={handleChangeFilters}
+                technologies={technologies}
+              />
+            )}
             <ExperiencesTimeline experiencesList={experiencesList} />
           </div>
         ) : (

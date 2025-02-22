@@ -61,12 +61,14 @@ export const Projects = () => {
         {isLoading && <Spinner />}
         {projectsList?.length ? (
           <div className="grid gap-6">
-            <Filter
-              filtersList={filtersList}
-              onClear={clearFilters}
-              onChange={handleChangeFilters}
-              technologies={technologies}
-            />
+            {projectsList?.length > 1 && (
+              <Filter
+                filtersList={filtersList}
+                onClear={clearFilters}
+                onChange={handleChangeFilters}
+                technologies={technologies}
+              />
+            )}
             <div className="grid gap-6">
               {projectsList?.map((project) => (
                 <ProjectCard key={project.id} {...project} />
