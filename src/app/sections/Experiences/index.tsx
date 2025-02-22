@@ -50,6 +50,7 @@ export const Experiences = () => {
         <motion.h3
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
           className="text-4xl font-display font-bold"
         >
           {EXPERIENCES_TITLE}
@@ -68,7 +69,7 @@ export const Experiences = () => {
         ) : (
           error && "An error occurred"
         )}
-        {experiencesList?.length === 0 && (
+        {experiencesList?.length === 0 && !isLoading && (
           <p className="text-lg">No experiences found</p>
         )}
       </div>
