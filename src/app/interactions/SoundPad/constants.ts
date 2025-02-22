@@ -6,6 +6,7 @@ export const NOTE_FREQUENCIES = {
   G: { sharp: 415.3, normal: 392.0, diminished: 369.99 },
   A: { sharp: 466.16, normal: 440.0, diminished: 415.3 },
   B: { sharp: 523.25, normal: 493.88, diminished: 466.16 },
+  C_OCTAVED: { sharp: 554.37, normal: 523.25, diminished: 493.88 }
 };
 
 export const TOUCH_MESSAGE = "Touch to interact";

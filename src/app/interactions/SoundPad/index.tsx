@@ -54,7 +54,7 @@ export const SoundPad = () => {
 
   return (
     <div className="grid align-center grid-rows-3">
-      <div className="grid grid-cols-7 row-end-3 row-start-1 rounded-b-2xl overflow-hidden">
+      <div className="grid grid-cols-8 row-end-3 row-start-1 rounded-b-2xl overflow-hidden">
         {Object.entries(NOTE_FREQUENCIES).map(([note, frequencies], index) => (
           <motion.div
             transition={{ delay: index * 0.1 }}
@@ -71,6 +71,7 @@ export const SoundPad = () => {
                 key={frequency}
               >
                 <SoundPadItem
+                  noteLabel={frequencyIndex == 1 ? note : undefined}
                   frequency={frequency}
                   stopNote={() => stopNote(frequency)}
                   startNote={() => startNote(frequency)}

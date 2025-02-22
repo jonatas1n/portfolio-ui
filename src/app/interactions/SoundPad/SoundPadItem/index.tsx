@@ -4,12 +4,14 @@ type SoundPadItemProps = {
   frequency: number;
   stopNote: VoidFunction;
   startNote: (frequency: number) => void;
+  noteLabel?: string;
 };
 
 export const SoundPadItem = ({
   frequency,
   stopNote,
   startNote,
+  noteLabel,
 }: SoundPadItemProps) => {
   return (
     <motion.button
@@ -27,7 +29,9 @@ export const SoundPadItem = ({
         startNote(frequency);
       }}
       onTouchEnd={stopNote}
-      className="bg-accent bg-opacity-40 border-dark border h-full w-full text-dark font-display text-2xl"
-    />
+      className="bg-accent bg-opacity-40 border-dark border h-full w-full text-opacity-25 text-accent font-display text-2xl"
+    >
+      {noteLabel && noteLabel[0]}
+    </motion.button>
   );
 };
