@@ -9,6 +9,8 @@ import { Project } from "@/app/types";
 import { getProjectFilters, makePath, PROJECTS_ROUTE } from "@/app/services";
 import { Filter } from "@/app/components/Filter";
 
+const ALL_PROJECTS_BUTTON_LABEL = "See all projects";
+
 import * as motion from "motion/react-client";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -62,9 +64,11 @@ export const Projects = () => {
               {projectsList?.map((project) => (
                 <ProjectCard key={project.id} {...project} />
               ))}
-              <div className="grid sm:justify-end justify-center">
-                <Button>See all projects</Button>
-              </div>
+              {projectsList?.length > 5 && (
+                <div className="grid sm:justify-end justify-center">
+                  <Button>{ALL_PROJECTS_BUTTON_LABEL}</Button>
+                </div>
+              )}
             </div>
           </div>
         ) : (
