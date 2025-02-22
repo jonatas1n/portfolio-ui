@@ -2,18 +2,21 @@
 
 import { SectionCard } from "@/app/components/SectionCard";
 import * as motion from "motion/react-client";
-import { FaArrowDown } from "react-icons/fa";
 import { SoundPad } from "@/app/interactions/SoundPad";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 
-import { BIOGRAPHY_PHRASE, SCROLL_MESSAGE } from "./constants";
+import { BIOGRAPHY_PHRASE } from "./constants";
 
 export const Intro = () => {
   const [intro, setIntro] = useState(false);
 
   return (
-    <motion.div className="h-[85vh] min-h-[850px] lg:h-[90vh] grid-rows-3 gap-4 grid">
+    <motion.div
+      initial={{ height: "100vh" }}
+      animate={{ height: intro ? ["85vh", "80vh", "85vh"] : "100vh" }}
+      className="min-h-[850px] grid-rows-3 gap-4 grid"
+    >
       <AnimatePresence>{intro && <SoundPad />}</AnimatePresence>
       <div className="row-start-2 row-end-4 lg:row-end-3 lg:self-start self-center">
         <motion.div
@@ -89,20 +92,6 @@ export const Intro = () => {
               )}
             </div>
           </SectionCard>
-          <div className="md:flex text-light items-center gap-2 justify-center translate-y-40 hidden opacity-25">
-            {SCROLL_MESSAGE}
-            <motion.div
-              initial={{ y: -5 }}
-              animate={{ y: 5 }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.5,
-                repeatType: "reverse",
-              }}
-            >
-              <FaArrowDown />
-            </motion.div>
-          </div>
         </motion.div>
       </div>
     </motion.div>
