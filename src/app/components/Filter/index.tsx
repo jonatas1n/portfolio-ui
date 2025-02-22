@@ -10,7 +10,7 @@ type FilterProps = {
 
 export const Filter = ({ filtersList, onClear, onChange, technologies }: FilterProps) => {
   return (
-    <div className="flex flex-wrap gap-4 items-center font-body">
+    <div className="flex flex-wrap gap-2 md:gap-4 items-center font-body">
       <p className="text-accent">Filter:</p>
       {filtersList?.map((filter) => (
         <Tag
