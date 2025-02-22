@@ -8,9 +8,11 @@ import { Skill, SkillGroupType } from "@/app/types";
 import { Modal } from "@/app/components/Modal";
 import DOMPurify from "dompurify";
 
+
 import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import { SkillGroup } from "./SkillGroup";
+import { Spinner } from "@/app/components/Spinner";
 
 export const Skills = () => {
   const [modalContent, setModalContent] = useState<
@@ -18,7 +20,7 @@ export const Skills = () => {
   >(undefined);
 
   const swrPath = makePath(SKILLS_ROUTE);
-  const { data: skillsGroupsList, error } = useSWR<SkillGroupType>(swrPath, getSkills);
+  const { data: skillsGroupsList, error, isLoading } = useSWR<SkillGroupType>(swrPath, getSkills);
   console.log(skillsGroupsList);
 
   const clearModalContent = () => setModalContent(undefined);
@@ -47,6 +49,7 @@ export const Skills = () => {
           >
             Skills
           </motion.h3>
+          {isLoading && <Spinner />}
           <div className="grid gap-10">
             {Object.entries(skillsGroupsList ?? {})?.map(([groupTitle, skillsList]) => (
               <motion.div

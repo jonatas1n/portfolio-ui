@@ -12,6 +12,7 @@ import { Filter } from "@/app/components/Filter";
 const ALL_PROJECTS_BUTTON_LABEL = "See all projects";
 
 import * as motion from "motion/react-client";
+import { Spinner } from "@/app/components/Spinner";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const PROJECTS_TITLE = "Creations";
@@ -20,7 +21,11 @@ export const Projects = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
   const [technologies, setTechnologies] = useState<string[]>([]);
   const swrPath = makePath(PROJECTS_ROUTE, { technologies });
-  const { data: projectsList, error } = useSWR<Project[]>(swrPath, fetcher);
+  const {
+    data: projectsList,
+    error,
+    isLoading,
+  } = useSWR<Project[]>(swrPath, fetcher);
 
   const handleChangeFilters = (filter: string) => {
     if (technologies.includes(filter)) {
@@ -52,6 +57,7 @@ export const Projects = () => {
         >
           {PROJECTS_TITLE}
         </motion.h3>
+        {isLoading && <Spinner />}
         {projectsList?.length ? (
           <div className="grid gap-6">
             <Filter

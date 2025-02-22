@@ -15,6 +15,7 @@ import { Filter } from "@/app/components/Filter";
 import { ExperiencesTimeline } from "./ExperiencesTimeline";
 
 import * as motion from "motion/react-client";
+import { Spinner } from "@/app/components/Spinner";
 
 const EXPERIENCES_TITLE = "Journey";
 
@@ -22,7 +23,7 @@ export const Experiences = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
   const [technologies, setTechnologies] = useState<string[]>([]);
   const swrPath = makePath(EXPERIENCES_ROUTE, { technologies });
-  const { data: experiencesList, error } = useSWR<Experience[]>(
+  const { data: experiencesList, error, isLoading } = useSWR<Experience[]>(
     swrPath,
     getExperiences
   );
@@ -53,6 +54,7 @@ export const Experiences = () => {
         >
           {EXPERIENCES_TITLE}
         </motion.h3>
+        {isLoading && <Spinner />}
         {experiencesList?.length ? (
           <div className="grid gap-6">
             <Filter
