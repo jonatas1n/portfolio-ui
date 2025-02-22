@@ -23,7 +23,7 @@ export const ProjectCard = ({
         transition={{ duration: 0.75 }}
         className="grid gap-4 grid-cols-4"
       >
-        <div className="grid gap-4 col-span-3">
+        <div className="grid gap-4 col-span-full">
           <h5 className="font-bold font-display text-2xl">{title}</h5>
           <div className="flex flex-wrap gap-2 md:gap-4">
             {technologies.map((technology, index) => (
