@@ -20,14 +20,14 @@ export const Gallery = ({
 }: GalleryProps) => {
   console.log(images);
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-8">
       <Button className="justify-self-start" onClick={closeGallery}>
         <FaArrowLeft /> Voltar
       </Button>
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        className="grid grid-flow-col gap-1 items-center justify-items-center"
+        className="grid grid-flow-col gap-4 items-center justify-items-center"
       >
         <Button
           className="justify-self-start py-4"
@@ -36,12 +36,12 @@ export const Gallery = ({
         >
           <FaChevronLeft />
         </Button>
-        <div className="grid gap-1 justify-center">
+        <div className="grid gap-4 justify-center">
           <Image
             src={images[imageIndex - 1]}
             width={0}
             height={0}
-            className="w-auto h-full max-h-[30rem] rounded-lg"
+            className="w-auto h-full min-h-[20rem] max-h-[30rem] rounded-lg"
             alt="Portfolio image"
           />
           <h6 className="text-center text-dark font-display">
