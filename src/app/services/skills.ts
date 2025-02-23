@@ -8,7 +8,6 @@ export const getSkills = async (): Promise<SkillGroupType> => {
     const path = makePath(SKILLS_ROUTE);
     const response = await fetch(path);
     const skillsResponse: SkillGroupTypeResponse = await response.json();
-    console.log(skillsResponse);
     const skills: SkillGroupType = Object.fromEntries(
       Object.entries(skillsResponse).map(([title, skills]) => [
         title,

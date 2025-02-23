@@ -21,7 +21,6 @@ export const Skills = () => {
 
   const swrPath = makePath(SKILLS_ROUTE);
   const { data: skillsGroupsList, error, isLoading } = useSWR<SkillGroupType>(swrPath, getSkills);
-  console.log(skillsGroupsList);
 
   const clearModalContent = () => setModalContent(undefined);
 
