@@ -21,6 +21,7 @@ export default {
     },
     extend: {
       colors: {
+        "accent-dark": "#3d2f1b",
         accent: "#7F623B",
         card: "#E5D9C0",
         light: "#FCF0D9",
