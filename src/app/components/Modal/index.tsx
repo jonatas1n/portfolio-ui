@@ -14,7 +14,7 @@ export const Modal = ({
   children,
 }: PropsWithChildren<ModalProps>) => {
   return (
-    <div className="z-20">
+    <div className="z-50">
       <div
         onClick={onClose}
         className="fixed w-dvw h-dvh bottom-0 top-0 left-0 right-0 z-50 backdrop-brightness-50"
@@ -23,7 +23,7 @@ export const Modal = ({
         initial={{ translateY: "-55%", opacity: 0 }}
         animate={{ translateY: "-50%", opacity: 1 }}
         exit={{ transform: "translateY(3rem)", opacity: 0 }}
-        className="w-1/2 h-1/2 z-50 min-h-60 fixed top-1/2 -translate-y-1/2 -translate-x-1/2"
+        className="w-1/2 h-1/2 z-50 min-h-60 fixed top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2"
       >
         <Card>
           <div className="grid gap-4">
