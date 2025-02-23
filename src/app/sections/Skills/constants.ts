@@ -3,7 +3,7 @@ import { FaDocker, FaNodeJs, FaPython, FaReact } from "react-icons/fa"
 import { FaDartLang, FaGolang } from "react-icons/fa6"
 import { GrGraphQl, GrMysql } from "react-icons/gr"
 import { RiNextjsFill } from "react-icons/ri"
-import { SiDjango, SiExpress, SiFlask, SiJavascript, SiMongodb, SiMui, SiPostgresql, SiRubyonrails, SiTypescript } from "react-icons/si"
+import { SiChakraui, SiDjango, SiExpress, SiFlask, SiJavascript, SiMongodb, SiMui, SiPostgresql, SiRubyonrails, SiTypescript } from "react-icons/si"
 
 export const skillIcons = {
   "react.js": FaReact,
@@ -26,4 +26,5 @@ export const skillIcons = {
   django: SiDjango,
   sass: DiSass,
   mysql: GrMysql,
+  "chakra ui": SiChakraui,
 }
