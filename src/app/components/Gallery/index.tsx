@@ -30,7 +30,7 @@ export const Gallery = ({
         className="grid grid-flow-col gap-1 items-center justify-items-center"
       >
         <Button
-          className="justify-self-start"
+          className="justify-self-start py-4"
           disabled={imageIndex - 1 == 0}
           onClick={prevImage}
         >
@@ -49,7 +49,7 @@ export const Gallery = ({
           </h6>
         </div>
         <Button
-          className="justify-self-end"
+          className="justify-self-end py-4"
           disabled={images.length == imageIndex}
           onClick={nextImage}
         >
