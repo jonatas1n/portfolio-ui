@@ -2,19 +2,14 @@ import { useState } from "react";
 import { Card } from "@/app/components/Card";
 import { Tag } from "@/app/components/Tag";
 import { Button } from "@/app/components/Button";
-import {
-  FaArrowLeft,
-  FaChevronLeft,
-  FaChevronRight,
-  FaExternalLinkAlt,
-} from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
-import Image from "next/image";
 import { Project } from "@/app/types";
 import DOMPurify from "dompurify";
 import * as motion from "motion/react-client";
 import { IoMdPhotos } from "react-icons/io";
 import { AnimatePresence } from "motion/react";
+import { Gallery } from "@/app/components/Gallery";
 
 export const ProjectCard = ({
   technologies,
@@ -23,41 +18,36 @@ export const ProjectCard = ({
   description,
   images,
 }: Project) => {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<undefined | number>(
-    undefined
-  );
+  const [selectedImageIndex, setSelectedImageIndex] = useState<
+    undefined | number
+  >(undefined);
 
   const toggleSelectedImage = () =>
     setSelectedImageIndex(!!selectedImageIndex ? undefined : 1);
 
-  return ( 
+  const nextImage = () => {
+    if (!selectedImageIndex) return;
+    if (selectedImageIndex == images?.length) return;
+    setSelectedImageIndex(selectedImageIndex + 1);
+  };
+
+  const prevImage = () => {
+    if (!selectedImageIndex) return;
+    if (selectedImageIndex == 1) return;
+    setSelectedImageIndex(selectedImageIndex - 1);
+  };
+
+  return (
     <Card>
       <AnimatePresence>
         {!!selectedImageIndex && images ? (
-          <div className="grid gap-4">
-            <Button className="justify-self-start" onClick={toggleSelectedImage}>
-              <FaArrowLeft /> Voltar
-            </Button>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="grid grid-flow-col gap-1 items-center justify-items-center"
-            >
-              <Button className="justify-self-start" disabled={selectedImageIndex - 1 == 0}>
-                <FaChevronLeft />
-              </Button>
-              <Image
-                src={images?.[selectedImageIndex - 1]}
-                width={0}
-                height={0}
-                className="w-auto h-full max-h-[30rem] rounded-lg"
-                alt="Portfolio image"
-              />
-              <Button className="justify-self-end" disabled={images.length == selectedImageIndex}>
-                <FaChevronRight />
-              </Button>
-            </motion.div>
-          </div>
+          <Gallery
+            closeGallery={toggleSelectedImage}
+            images={images}
+            imageIndex={selectedImageIndex}
+            nextImage={nextImage}
+            prevImage={prevImage}
+          />
         ) : (
           <motion.div
             initial={{ opacity: 0, translateX: 15 }}
