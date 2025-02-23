@@ -27,5 +27,5 @@ export const skillIcons = {
   sass: DiSass,
   mysql: GrMysql,
   "chakra ui": SiChakraui,
-  bootstrap: FaBoostrap,
+  bootstrap: FaBootstrap,
 }
