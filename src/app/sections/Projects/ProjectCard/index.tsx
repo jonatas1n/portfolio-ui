@@ -40,7 +40,7 @@ export const ProjectCard = ({
   return (
     <Card>
       <AnimatePresence>
-        {!!selectedImageIndex && images ? (
+        {!!selectedImageIndex && images && (
           <Gallery
             closeGallery={toggleSelectedImage}
             images={images}
@@ -48,12 +48,14 @@ export const ProjectCard = ({
             nextImage={nextImage}
             prevImage={prevImage}
           />
-        ) : (
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {!selectedImageIndex && (
           <motion.div
             initial={{ opacity: 0, translateX: 15 }}
             whileInView={{ opacity: 1, translateX: 0 }}
-            exit={{ opacity: 1, translateX: -15 }}
-            transition={{ duration: 0.75 }}
+            exit={{ opacity: 0, translateX: -15, height: 0 }}
             className="grid gap-4 grid-cols-4"
           >
             <div className="grid gap-4 col-span-full">
@@ -84,7 +86,7 @@ export const ProjectCard = ({
               >
                 {images && (
                   <Button onClick={toggleSelectedImage}>
-                    See images <IoMdPhotos />
+                    Images <IoMdPhotos />
                   </Button>
                 )}
                 {link && (
