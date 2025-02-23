@@ -1,15 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 import { SectionCard } from "@/app/components/SectionCard";
 import { ProjectCard } from "./ProjectCard";
-import { Button } from "@/app/components/Button";
 import { Project } from "@/app/types";
-import { getProjectFilters, makePath, PROJECTS_ROUTE } from "@/app/services";
-import { Filter } from "@/app/components/Filter";
-
-const ALL_PROJECTS_BUTTON_LABEL = "See all projects";
+import { makePath, PROJECTS_ROUTE } from "@/app/services";
+import { Carousel } from "@/app/components/Carousel";
 
 import * as motion from "motion/react-client";
 import { Spinner } from "@/app/components/Spinner";
@@ -18,30 +15,23 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const PROJECTS_TITLE = "Creations";
 
 export const Projects = () => {
-  const [filtersList, setFiltersList] = useState<string[]>([]);
-  const [technologies, setTechnologies] = useState<string[]>([]);
-  const swrPath = makePath(PROJECTS_ROUTE, { technologies });
+  const [selectedProject, setSelectedProject] = useState(0);
+  const swrPath = makePath(PROJECTS_ROUTE, {});
   const {
     data: projectsList,
     error,
     isLoading,
   } = useSWR<Project[]>(swrPath, fetcher);
 
-  const handleChangeFilters = (filter: string) => {
-    if (technologies.includes(filter)) {
-      setTechnologies((prevFilters) => prevFilters.filter((f) => f !== filter));
-      return;
-    }
-    setTechnologies((prevFilters) => [...prevFilters, filter]);
+  const nextProject = () => {
+    if (selectedProject + 1 == projectsList?.length) return;
+    setSelectedProject(selectedProject + 1);
   };
 
-  useEffect(() => {
-    getProjectFilters().then((fetchedFilters) => {
-      setFiltersList(fetchedFilters);
-    });
-  }, []);
-
-  const clearFilters = () => setTechnologies([]);
+  const prevProject = () => {
+    if (selectedProject == 0) return;
+    setSelectedProject(selectedProject - 1);
+  };
 
   if (projectsList?.length === 0 && !isLoading) {
     return null;
@@ -54,30 +44,22 @@ export const Projects = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           whileInView={{ opacity: 1 }}
-          className="text-4xl font-display font-bold"
+          className="text-4xl font-display text-dark font-bold"
         >
           {PROJECTS_TITLE}
         </motion.h3>
         {isLoading && <Spinner />}
         {projectsList?.length ? (
           <div className="grid gap-6">
-            {projectsList?.length > 1 && (
-              <Filter
-                filtersList={filtersList}
-                onClear={clearFilters}
-                onChange={handleChangeFilters}
-                technologies={technologies}
+            <div className="flex gap-6 text-accent-dark items-center min-h-[50vh]">
+              <Carousel
+                items={projectsList.map((project) => (
+                  <ProjectCard key={project.id} {...project} />
+                ))}
+                itemIndex={selectedProject}
+                nextItem={nextProject}
+                prevItem={prevProject}
               />
-            )}
-            <div className="grid gap-6">
-              {projectsList?.map((project) => (
-                <ProjectCard key={project.id} {...project} />
-              ))}
-              {projectsList?.length > 5 && (
-                <div className="grid sm:justify-end justify-center">
-                  <Button>{ALL_PROJECTS_BUTTON_LABEL}</Button>
-                </div>
-              )}
             </div>
           </div>
         ) : (

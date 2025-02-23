@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { Card } from "@/app/components/Card";
 import { Tag } from "@/app/components/Tag";
-import { Button } from "@/app/components/Button";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { HiOutlineExternalLink } from "react-icons/hi";
 import Link from "next/link";
 import { Project } from "@/app/types";
 import DOMPurify from "dompurify";
 import * as motion from "motion/react-client";
-import { IoMdPhotos } from "react-icons/io";
-import { AnimatePresence } from "motion/react";
-import { Gallery } from "@/app/components/Gallery";
+import { ProjectGallery } from "@/app/sections/Projects/ProjectGallery";
 
 export const ProjectCard = ({
   technologies,
@@ -18,89 +15,70 @@ export const ProjectCard = ({
   description,
   images,
 }: Project) => {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<
-    undefined | number
-  >(undefined);
-
-  const toggleSelectedImage = () =>
-    setSelectedImageIndex(!!selectedImageIndex ? undefined : 1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const nextImage = () => {
-    if (!selectedImageIndex) return;
-    if (selectedImageIndex == images?.length) return;
+    if (selectedImageIndex + 1 == images?.length) return;
     setSelectedImageIndex(selectedImageIndex + 1);
   };
 
   const prevImage = () => {
-    if (!selectedImageIndex) return;
-    if (selectedImageIndex == 1) return;
+    if (selectedImageIndex == 0) return;
     setSelectedImageIndex(selectedImageIndex - 1);
   };
 
   return (
-    <Card>
-      <AnimatePresence>
-        {!!selectedImageIndex && images && (
-          <Gallery
-            closeGallery={toggleSelectedImage}
-            images={images}
-            imageIndex={selectedImageIndex}
-            nextImage={nextImage}
-            prevImage={prevImage}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {!selectedImageIndex && (
-          <motion.div
-            initial={{ opacity: 0, translateX: 15 }}
-            whileInView={{ opacity: 1, translateX: 0 }}
-            exit={{ opacity: 0, translateX: -15, height: 0 }}
-            className="grid gap-4 grid-cols-4"
+    <Card className="h-full">
+      <motion.div
+        initial={{ opacity: 0, translateX: 15 }}
+        whileInView={{ opacity: 1, translateX: 0 }}
+        exit={{ opacity: 0, translateX: -15, height: 0 }}
+        className="grid gap-4 grid-cols-4"
+      >
+        <div className="grid gap-4 col-span-full">
+          <Link
+            href={link ?? ""}
+            target="_blank"
+            className="hover:underline font-bold text-dark flex justify-between items-center font-display text-2xl"
           >
-            <div className="grid gap-4 col-span-full">
-              <h5 className="font-bold font-display text-2xl">{title}</h5>
-              <div className="flex flex-wrap gap-2 md:gap-4">
-                {technologies.map((technology, index) => (
-                  <motion.div
-                    key={technology}
-                    initial={{ opacity: 0, translateX: 10 }}
-                    whileInView={{ opacity: 1, translateX: 0 }}
-                    transition={{ delay: index * 0.125 }}
-                  >
-                    <Tag>{technology}</Tag>
-                  </motion.div>
-                ))}
-              </div>
+            {title}
+            <HiOutlineExternalLink />
+          </Link>
+          <div className="flex flex-wrap gap-2 md:gap-4">
+            {technologies.map((technology, index) => (
               <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(description),
-                }}
-              />
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex gap-3 mt-4"
+                key={technology}
+                initial={{ opacity: 0, translateX: 10 }}
+                whileInView={{ opacity: 1, translateX: 0 }}
+                transition={{ delay: index * 0.125 }}
               >
-                {images && (
-                  <Button onClick={toggleSelectedImage}>
-                    Images <IoMdPhotos />
-                  </Button>
-                )}
-                {link && (
-                  <Link href={link}>
-                    <Button>
-                      Visit page <FaExternalLinkAlt size={12} />
-                    </Button>
-                  </Link>
-                )}
+                <Tag>{technology}</Tag>
               </motion.div>
-            </div>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(description),
+            }}
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex gap-3 mt-4"
+          >
+            {images && (
+              <ProjectGallery
+                images={images}
+                imageIndex={selectedImageIndex}
+                nextImage={nextImage}
+                prevImage={prevImage}
+              />
+            )}
           </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      </motion.div>
     </Card>
   );
 };
