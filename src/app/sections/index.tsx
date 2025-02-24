@@ -5,12 +5,11 @@ import { Intro } from "./Intro";
 
 export function SectionsWrapper() {
   return (
-    <>
+    <div className="lg:col-span-5 col-span-6 grid md:gap-24 gap-10">
       <Intro />
-      <Projects />
       <Projects />
       <Skills />
       <Experiences />
-    </>
+    </div>
   );
 }

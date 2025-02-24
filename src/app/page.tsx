@@ -18,9 +18,7 @@ export default function Home() {
   return (
     <Container>
       <div className="grid grid-cols-6 gap-10 h-full items-center mb-24">
-        <div className="lg:col-span-5 col-span-6 grid md:gap-24 gap-10">
-          <SectionsWrapper />
-        </div>
+        <SectionsWrapper />
 
         <div className="relative lg:col-span-1 col-span-full grid items-center h-full">
           <SideMenu />
