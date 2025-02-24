@@ -1,24 +1,36 @@
-"use client";
+"use client"
 
-import { SectionCard } from "@/app/components/SectionCard";
+import dynamic from "next/dynamic";
+import { PropsWithChildren, useMemo } from "react";
+import { SectionCard } from "@/components/SectionCard";
 import * as motion from "motion/react-client";
-import { SoundPad } from "@/app/interactions/SoundPad";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
-
 import { BIOGRAPHY_PHRASE } from "./constants";
+
+const SoundPad = dynamic(
+  () => import("@/interactions/SoundPad").then((mod) => mod.SoundPad),
+  { ssr: false }
+);
+
+const AnimatedIntro = ({ children }: PropsWithChildren) => (
+  <motion.div
+    initial={{ height: "100vh" }}
+    animate={{ height: ["85vh", "80vh", "85vh"] }}
+    className="md:min-h-[850px] grid-rows-3 gap-4 grid"
+  >
+    {children}
+  </motion.div>
+);
 
 export const Intro = () => {
   const [intro, setIntro] = useState(false);
+  const biographyPhrase = useMemo(() => BIOGRAPHY_PHRASE, []);
 
   return (
-    <motion.div
-      initial={{ height: "100vh" }}
-      animate={{ height: intro ? ["85vh", "80vh", "85vh"] : "100vh" }}
-      className="min-h-[850px] grid-rows-3 gap-4 grid"
-    >
+    <AnimatedIntro>
       <AnimatePresence>{intro && <SoundPad />}</AnimatePresence>
-      <div className="row-start-2 row-end-4 lg:row-end-3 lg:self-start self-center">
+      <div className="row-start-2 row-end-4 lg:row-end-3 self-start">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -58,7 +70,7 @@ export const Intro = () => {
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1, duration: 1 }}
-                        className="lg:text-6xl md:text-5xl text-3xl font-bold leading-10"
+                        className="text-[clamp(2rem,5vw,4rem)] font-bold leading-10"
                       >
                         I&apos;m Jônatas Gomes
                       </motion.h1>
@@ -85,7 +97,7 @@ export const Intro = () => {
                       transition={{ delay: 1.75, duration: 1 }}
                       className="text-base font-body py-2 md:py-4 border-y border-dark"
                     >
-                      {BIOGRAPHY_PHRASE}
+                      {biographyPhrase}
                     </motion.div>
                   </div>
                 </motion.div>
@@ -94,6 +106,6 @@ export const Intro = () => {
           </SectionCard>
         </motion.div>
       </div>
-    </motion.div>
+    </AnimatedIntro>
   );
 };

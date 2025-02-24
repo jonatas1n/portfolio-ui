@@ -3,16 +3,10 @@ import { Carousel } from "../../../components/Carousel";
 
 type ProjectGalleryProps = {
   images: string[];
-  imageIndex: number;
-  nextImage?: VoidFunction;
-  prevImage?: VoidFunction;
 };
 
 export const ProjectGallery = ({
   images,
-  imageIndex,
-  nextImage,
-  prevImage,
 }: ProjectGalleryProps) => {
   const imagesNodes = images.map((image) => (
     <Image
@@ -27,9 +21,6 @@ export const ProjectGallery = ({
   return (
     <Carousel
       items={imagesNodes}
-      itemIndex={imageIndex}
-      nextItem={nextImage}
-      prevItem={prevImage}
       showIndex
     />
   );

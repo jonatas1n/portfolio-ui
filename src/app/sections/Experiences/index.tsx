@@ -1,50 +1,12 @@
-"use client";
+"use server"
 
-import {
-  getExperiences,
-  makePath,
-  getExperiencesFilters,
-  EXPERIENCES_ROUTE,
-} from "@/app/services";
-import { SectionCard } from "@/app/components/SectionCard";
-
-import { useState, useEffect } from "react";
-import useSWR from "swr";
-import { Experience } from "@/app/types";
-import { Filter } from "@/app/components/Filter";
-import { ExperiencesTimeline } from "./ExperiencesTimeline";
-
+import { SectionCard } from "@/components/SectionCard";
 import * as motion from "motion/react-client";
-import { Spinner } from "@/app/components/Spinner";
+import { ExperienceList } from "./ExperiencesList";
 
 const EXPERIENCES_TITLE = "Journey";
 
-export const Experiences = () => {
-  const [filtersList, setFiltersList] = useState<string[]>([]);
-  const [technologies, setTechnologies] = useState<string[]>([]);
-  const swrPath = makePath(EXPERIENCES_ROUTE, { technologies });
-  const {
-    data: experiencesList,
-    error,
-    isLoading,
-  } = useSWR<Experience[]>(swrPath, getExperiences);
-
-  const handleChangeFilters = (filter: string) => {
-    if (technologies.includes(filter)) {
-      setTechnologies((prevFilters) => prevFilters.filter((f) => f !== filter));
-      return;
-    }
-    setTechnologies((prevFilters) => [...prevFilters, filter]);
-  };
-
-  useEffect(() => {
-    getExperiencesFilters().then((fetchedFilters) => {
-      setFiltersList(fetchedFilters);
-    });
-  }, []);
-
-  const clearFilters = () => setTechnologies([]);
-
+export const Experiences = async () => {
   return (
     <SectionCard id="experiences">
       <div className="grid gap-4">
@@ -55,25 +17,7 @@ export const Experiences = () => {
         >
           {EXPERIENCES_TITLE}
         </motion.h3>
-        {isLoading && <Spinner />}
-        {experiencesList?.length ? (
-          <div className="grid gap-6">
-            {filtersList.length > 1 && (
-              <Filter
-                filtersList={filtersList}
-                onClear={clearFilters}
-                onChange={handleChangeFilters}
-                technologies={technologies}
-              />
-            )}
-            <ExperiencesTimeline experiencesList={experiencesList} />
-          </div>
-        ) : (
-          error && "An error occurred"
-        )}
-        {experiencesList?.length === 0 && !isLoading && (
-          <p className="text-lg">No experiences found</p>
-        )}
+        <ExperienceList />
       </div>
     </SectionCard>
   );

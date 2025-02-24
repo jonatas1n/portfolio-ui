@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect, useCallback, useRef } from "react";
 import { SoundPadItem } from "./SoundPadItem";
 import { MdTouchApp } from "react-icons/md";
@@ -82,9 +84,9 @@ export const SoundPad = () => {
         ))}
       </div>
       <motion.h4
-        initial={{ opacity: 0, translateY: -20 }}
-        animate={{ opacity: 1, translateY: 0 }}
-        transition={{ duration: 1, delay: 1 }}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0, translateY: -10 }}
+        transition={{ duration: 2, delay: 5 }}
         className="font-semibold row-start-3 text-light text-opacity-30 self-center font-display text-center flex items-center gap-1 justify-center"
       >
         <MdTouchApp /> {TOUCH_MESSAGE}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { social } from "@/app/constants/social";
+import { social } from "@/constants/social";
 import Link from "next/link";
 import { FloatButton } from "../FloatButton";
 import * as motion from "motion/react-client";

@@ -1,6 +1,6 @@
-import { Experience } from "@/app/types";
-import { Tag } from "@/app/components/Tag";
-import { Card } from "@/app/components/Card";
+import { Experience } from "@/types";
+import { Tag } from "@/components/Tag";
+import { Card } from "@/components/Card";
 import DOMPurify from "dompurify";
 import * as motion from "motion/react-client";
 

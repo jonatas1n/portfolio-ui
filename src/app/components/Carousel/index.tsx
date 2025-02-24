@@ -1,25 +1,33 @@
+"use client"
+
+import { ReactNode, useState } from "react";
 import {
   FaRegArrowAltCircleLeft,
   FaRegArrowAltCircleRight,
 } from "react-icons/fa";
 import * as motion from "motion/react-client";
-import { ReactNode } from "react";
 
 type GalleryProps = {
   items: ReactNode[];
-  itemIndex: number;
-  nextItem?: VoidFunction;
-  prevItem?: VoidFunction;
   showIndex?: boolean;
 };
 
 export const Carousel = ({
   items,
-  itemIndex,
-  nextItem,
-  prevItem,
   showIndex = false,
 }: GalleryProps) => {
+  const [itemIndex, setItemIndex] = useState(0);
+
+  const nextItem = () => {
+    if (itemIndex + 1 == items.length) return;
+    setItemIndex(itemIndex + 1);
+  }
+
+  const prevItem = () => {
+    if (itemIndex == 0) return;
+    setItemIndex(itemIndex - 1);
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}

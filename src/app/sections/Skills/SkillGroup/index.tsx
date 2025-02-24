@@ -1,4 +1,4 @@
-import { Skill } from "@/app/types";
+import { Skill } from "@/types";
 import { SkillButton } from "../SkillButton";
 import * as motion from "motion/react-client";
 

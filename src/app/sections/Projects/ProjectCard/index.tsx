@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Card } from "@/app/components/Card";
-import { Tag } from "@/app/components/Tag";
+import { Card } from "@/components/Card";
+import { Tag } from "@/components/Tag";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import Link from "next/link";
-import { Project } from "@/app/types";
+import { Project } from "@/types";
 import DOMPurify from "dompurify";
 import * as motion from "motion/react-client";
-import { ProjectGallery } from "@/app/sections/Projects/ProjectGallery";
+import { ProjectGallery } from "@/sections/Projects/ProjectGallery";
 
 export const ProjectCard = ({
   technologies,
@@ -15,18 +14,6 @@ export const ProjectCard = ({
   description,
   images,
 }: Project) => {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const nextImage = () => {
-    if (selectedImageIndex + 1 == images?.length) return;
-    setSelectedImageIndex(selectedImageIndex + 1);
-  };
-
-  const prevImage = () => {
-    if (selectedImageIndex == 0) return;
-    setSelectedImageIndex(selectedImageIndex - 1);
-  };
-
   return (
     <Card className="h-full">
       <motion.div
@@ -71,9 +58,6 @@ export const ProjectCard = ({
             {images && (
               <ProjectGallery
                 images={images}
-                imageIndex={selectedImageIndex}
-                nextImage={nextImage}
-                prevImage={prevImage}
               />
             )}
           </motion.div>

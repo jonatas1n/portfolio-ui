@@ -1,4 +1,4 @@
-import { makePath } from "@/app/services/utils";
+import { makePath } from "@/services/utils";
 import { SkillGroupType, SkillGroupTypeResponse } from "../types";
 
 export const SKILLS_ROUTE = "skills";

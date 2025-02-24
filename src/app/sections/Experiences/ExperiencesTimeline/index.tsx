@@ -1,4 +1,4 @@
-import { Experience } from "@/app/types";
+import { Experience } from "@/types";
 import { ExperienceCard } from "../ExperienceCard";
 import * as motion from "motion/react-client";
 
