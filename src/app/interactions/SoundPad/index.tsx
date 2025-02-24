@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { SoundPadItem } from "./SoundPadItem";
@@ -19,6 +19,38 @@ export const SoundPad = () => {
   }, []);
 
   useEffect(() => {
+    const ctx = new (window.AudioContext || window.AudioContext)();
+    setAudioContext(ctx);
+
+    return () => {
+      ctx.close();
+    };
+  }, []);
+
+  const startNote = (frequency: number) => {
+    let osc = oscillatorsRef.current.get(frequency);
+    if (osc) {
+      osc.start();
+      return;
+    }
+
+    if (!audioContext) return;
+
+    osc = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(frequency, audioContext.currentTime);
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+
+    osc.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    osc.start();
+    oscillatorsRef.current.set(frequency, osc);
+  };
+
+  useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         oscillatorsRef.current.forEach((osc) => {
@@ -28,31 +60,11 @@ export const SoundPad = () => {
         oscillatorsRef.current.clear();
       }
     };
+
     document.addEventListener("visibilitychange", handleVisibilityChange);
     return () =>
       document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
-
-  const startNote = (frequency: number) => {
-    if (oscillatorsRef.current.has(frequency)) return; // Evita duplicação da nota
-
-    const ctx =
-      audioContext || new (window.AudioContext || window.AudioContext)();
-    setAudioContext(ctx);
-
-    const osc = ctx.createOscillator();
-    const gainNode = ctx.createGain();
-
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(frequency, ctx.currentTime);
-    gainNode.gain.setValueAtTime(0.5, ctx.currentTime);
-
-    osc.connect(gainNode);
-    gainNode.connect(ctx.destination);
-
-    osc.start();
-    oscillatorsRef.current.set(frequency, osc);
-  };
 
   return (
     <div className="grid align-center grid-rows-3">
@@ -73,7 +85,7 @@ export const SoundPad = () => {
                 key={frequency}
               >
                 <SoundPadItem
-                  noteLabel={frequencyIndex == 1 ? note : undefined}
+                  noteLabel={frequencyIndex === 1 ? note : undefined}
                   frequency={frequency}
                   stopNote={() => stopNote(frequency)}
                   startNote={() => startNote(frequency)}
