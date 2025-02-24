@@ -23,7 +23,7 @@ export const Modal = ({
         initial={{ translateY: "-55%", opacity: 0 }}
         animate={{ translateY: "-50%", opacity: 1 }}
         exit={{ transform: "translateY(3rem)", opacity: 0 }}
-        className="w-1/2 h-1/2 z-50 min-h-60 fixed top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2"
+        className="w-3/4 lg:w-1/2 h-1/2 z-50 min-h-60 fixed top-1/2 left-[12.5%] lg:left-1/4 -translate-y-1/2 -translate-x-[12.5%] lg:-translate-x-1/2"
       >
         <Card>
           <div className="grid gap-4">
