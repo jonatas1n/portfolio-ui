@@ -12,10 +12,12 @@ export const ProjectGallery = ({
     <Image
       key={image}
       src={image}
+      layout="responsive"
       width={0}
       height={0}
-      className="w-auto h-full min-h-[20rem] max-h-[30rem] rounded-lg"
+      className="rounded-lg"
       alt="Portfolio image"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
     />
   ));
   return (
