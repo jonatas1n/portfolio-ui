@@ -23,7 +23,7 @@ export const SkillGroup = ({ title, skills, onClick }: SkillGroupProps) => {
           <motion.div
             initial={{ transform: "scale(0)", opacity: 0 }}
             whileInView={{ opacity: 1, transform: "scale(1)" }}
-            transition={{ delay: index * 0.06125 }}
+            transition={{ delay: index * 0.06125, duration: .5 }}
             key={skill.id}
           >
             <SkillButton skill={skill.title} onClick={() => onClick(skill)} />

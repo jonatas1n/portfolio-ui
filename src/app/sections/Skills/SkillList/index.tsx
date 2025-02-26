@@ -34,7 +34,7 @@ export const SkillList = () => {
       ([groupTitle, skillsList], index) => (
         <motion.div
           key={index}
-          initial={{ transform: "translateX(0)", opacity: 0 }}
+          initial={{ translateX: 0, opacity: 0 }}
           whileInView={{ opacity: 1 }}
         >
           <SkillGroup
