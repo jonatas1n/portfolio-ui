@@ -5,6 +5,10 @@ import { social } from "@/constants/social";
 import Link from "next/link";
 import { FloatButton } from "../FloatButton";
 import * as motion from "motion/react-client";
+import { Modal } from "../Modal";
+import { Contacts } from "@/sections/Contacts";
+import { Button } from "../Button";
+import { FiMail } from "react-icons/fi";
 
 const sectionsLinks = [
   { link: "#projects", label: "Creations" },
@@ -14,6 +18,9 @@ const sectionsLinks = [
 
 export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const toggleModal = () => setModalIsOpen(!modalIsOpen);
 
   const toggleOpenState = () => setIsOpen(!isOpen);
 
@@ -41,7 +48,10 @@ export const SideMenu = () => {
             </Link>
           ))}
         </ul>
-        <motion.hr initial={{ opacity: 0, width: 0 }} animate={{opacity: 1, width: "unset"}} />
+        <motion.hr
+          initial={{ opacity: 0, width: 0 }}
+          animate={{ opacity: 1, width: "unset" }}
+        />
         <div className="text-light gap-5 grid">
           <motion.p
             initial={{ opacity: 0, transform: "translateX(1rem)" }}
@@ -64,7 +74,7 @@ export const SideMenu = () => {
                   transition={{ delay: 0.06125 * index }}
                   className="flex hover:bg-accent transition-all hover:text-light hover:scale-110 rounded-full bg-light text-dark p-1"
                 >
-                  {social.icon({})}
+                  {social.icon({ fontSize: 24 })}
                 </motion.li>
               </Link>
             ))}
