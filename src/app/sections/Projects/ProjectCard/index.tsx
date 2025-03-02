@@ -53,7 +53,7 @@ export const ProjectCard = ({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex gap-3 mt-4 mx-auto"
+            className="grid gap-3 mt-4 mx-auto w-full h-max-[20rem]"
           >
             {images && (
               <ProjectGallery
