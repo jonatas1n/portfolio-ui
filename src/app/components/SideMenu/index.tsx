@@ -5,10 +5,6 @@ import { social } from "@/constants/social";
 import Link from "next/link";
 import { FloatButton } from "../FloatButton";
 import * as motion from "motion/react-client";
-import { Modal } from "../Modal";
-import { Contacts } from "@/sections/Contacts";
-import { Button } from "../Button";
-import { FiMail } from "react-icons/fi";
 
 const sectionsLinks = [
   { link: "#projects", label: "Creations" },
@@ -18,9 +14,6 @@ const sectionsLinks = [
 
 export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const toggleModal = () => setModalIsOpen(!modalIsOpen);
 
   const toggleOpenState = () => setIsOpen(!isOpen);
 
