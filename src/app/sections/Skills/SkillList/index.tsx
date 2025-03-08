@@ -36,6 +36,7 @@ export const SkillList = () => {
           key={index}
           initial={{ translateX: 0, opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          className={skillsList.length <= 3 ? 'col-span-1' : 'col-span-2'}
         >
           <SkillGroup
             title={groupTitle}
@@ -81,7 +82,7 @@ export const SkillList = () => {
           </Modal>
         </AnimatePresence>
       )}
-      <div className="grid gap-10">
+      <div className="grid grid-cols-2 gap-10">
         {skillsGroups.map((skillGroup) => skillGroup)}
       </div>
     </>

@@ -18,7 +18,7 @@ export const SkillGroup = ({ title, skills, onClick }: SkillGroupProps) => {
       >
         {title}
       </motion.h4>
-      <div className="flex flex-wrap gap-10 justify-center">
+      <div className="flex flex-wrap gap-8 justify-center">
         {skills?.map((skill, index) => (
           <motion.div
             initial={{ transform: "scale(0)", opacity: 0 }}

@@ -17,7 +17,7 @@ export const SkillButton = ({ onClick, skill }: SkillButtonProps) => {
         onClick={onClick}
         className="rounded-lg bg-light p-4 shadow hover:shadow-lg transition-all text-accent-dark"
       >
-        {icon({ size: 36 })}
+        {icon({ size: 30 })}
       </div>
       {skill}
     </div>
