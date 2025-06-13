@@ -8,7 +8,6 @@ type ProjectGalleryProps = {
 export const ProjectGallery = ({
   images,
 }: ProjectGalleryProps) => {
-  console.log(typeof images);
   const imagesNodes = JSON.parse(images).map((image: string) => (
     <Image
       key={image}
