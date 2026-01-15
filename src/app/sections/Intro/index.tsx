@@ -1,17 +1,11 @@
 "use client"
 
-import dynamic from "next/dynamic";
 import { PropsWithChildren, useMemo } from "react";
 import { SectionCard } from "@/components/SectionCard";
 import * as motion from "motion/react-client";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { BIOGRAPHY_PHRASE } from "./constants";
-
-const SoundPad = dynamic(
-  () => import("@/interactions/SoundPad").then((mod) => mod.SoundPad),
-  { ssr: false }
-);
 
 const AnimatedIntro = ({ children }: PropsWithChildren) => (
   <motion.div
@@ -29,7 +23,6 @@ export const Intro = () => {
 
   return (
     <AnimatedIntro>
-      <AnimatePresence>{intro && <SoundPad />}</AnimatePresence>
       <div className="row-start-2 row-end-4 lg:row-end-3 self-start">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
