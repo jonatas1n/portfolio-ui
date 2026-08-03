@@ -61,7 +61,7 @@ export const skillIcons = {
   "context api": TbApi,
   redux: SiRedux,
   zustand: GiBearFace,
-  "react testing library": SiTestinglibrary,
+  "react testing": SiTestinglibrary,
   jest: SiJest,
   cypress: SiCypress,
   playwright: FaMasksTheater,
