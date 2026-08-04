@@ -6,6 +6,7 @@ import { Experience } from "@/types";
 import { Spinner } from "@/components/Spinner";
 import { Filter } from "@/components/Filter";
 import { ExperiencesTimeline } from "../ExperiencesTimeline";
+import * as motion from "motion/react-client";
 import {
   getExperiences,
   makePath,
@@ -16,12 +17,14 @@ import {
 export const ExperienceList = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
   const [technologies, setTechnologies] = useState<string[]>([]);
+
   const swrPath = makePath(EXPERIENCES_ROUTE, { technologies });
+
   const {
     data: experiencesList,
     error,
     isLoading,
-  } = useSWR<Experience[]>(swrPath, getExperiences);
+  } = useSWR<Experience[]>(swrPath, getExperiences, { keepPreviousData: true });
 
   const handleChangeFilters = (filter: string) => {
     if (technologies.includes(filter)) {
@@ -33,17 +36,17 @@ export const ExperienceList = () => {
 
   const clearFilters = () => setTechnologies([]);
 
-    useEffect(() => {
-      getExperiencesFilters().then((fetchedFilters) => {
-        setFiltersList(fetchedFilters);
-      });
-    }, []);
+  useEffect(() => {
+    getExperiencesFilters().then((fetchedFilters) => {
+      setFiltersList(fetchedFilters);
+    });
+  }, []);
 
   if (error) {
     return "error";
   }
 
-  if (isLoading) return <Spinner />
+  if (isLoading && !experiencesList) return <Spinner />
 
   if (!experiencesList) {
     return (
@@ -60,6 +63,17 @@ export const ExperienceList = () => {
           onChange={handleChangeFilters}
           technologies={technologies}
         />
+      )}
+
+      {isLoading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center items-center h-full"
+        >
+          <Spinner />
+        </motion.div>
       )}
       <ExperiencesTimeline experiencesList={experiencesList} />
     </div>

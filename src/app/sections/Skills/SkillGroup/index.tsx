@@ -14,15 +14,17 @@ export const SkillGroup = ({ title, skills, onClick }: SkillGroupProps) => {
       <motion.h4
         whileInView={{ opacity: 1 }}
         initial={{ opacity: 0 }}
+        viewport={{ once: true }}
         className="pl-4 text-2xl font-semibold text-center font-display"
       >
         {title}
       </motion.h4>
-      <div className="flex flex-wrap gap-8 justify-center">
+      <div className="flex flex-wrap gap-8 justify-center p-4 px-0">
         {skills?.map((skill, index) => (
           <motion.div
             initial={{ transform: "scale(0)", opacity: 0 }}
             whileInView={{ opacity: 1, transform: "scale(1)" }}
+            viewport={{ once: true }}
             transition={{ delay: index * 0.06125, duration: .5 }}
             key={skill.id}
           >

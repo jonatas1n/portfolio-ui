@@ -36,6 +36,7 @@ export const SkillList = () => {
           key={index}
           initial={{ translateX: 0, opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="col-span-1"
         >
           <SkillGroup

@@ -4,7 +4,11 @@ import { makePath } from "./utils";
 export const EXPERIENCES_ROUTE = "experiences";
 
 export const getExperiences = (url: string) =>
-  fetch(url)
+  fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then((res) => res.json())
     .then((experienceList: ExperienceResponse[]) =>
       experienceList.map((experience) => {

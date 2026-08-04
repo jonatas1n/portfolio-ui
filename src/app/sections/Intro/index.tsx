@@ -10,8 +10,9 @@ import { BIOGRAPHY_PHRASE } from "./constants";
 const AnimatedIntro = ({ children }: PropsWithChildren) => (
   <motion.div
     initial={{ height: "100vh" }}
-    animate={{ height: ["85vh", "80vh", "85vh"] }}
-    className="md:min-h-[850px] grid-rows-3 gap-4 grid"
+    animate={{ height: "88dvh" }}
+    transition={{ duration: 1.5, delay: 1 }}
+    className="h-[88dvh]"
   >
     {children}
   </motion.div>
@@ -23,7 +24,7 @@ export const Intro = () => {
 
   return (
     <AnimatedIntro>
-      <div className="row-start-2 row-end-4 lg:row-end-3 self-start">
+      <div className="sticky top-[calc(50dvh-280px)]">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}

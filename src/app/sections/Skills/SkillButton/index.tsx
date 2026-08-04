@@ -15,11 +15,11 @@ export const SkillButton = ({ onClick, skill }: SkillButtonProps) => {
     <div className="cursor-pointer grid justify-items-center gap-1 text-center font-display">
       <div
         onClick={onClick}
-        className="rounded-lg bg-light p-4 shadow hover:shadow-lg transition-all text-accent-dark"
+        className="rounded-lg bg-light p-4 shadow hover:shadow-lg transition-all text-accent-dark flex items-center justify-center gap-2"
       >
         {icon({ size: 30 })}
+        {skill}
       </div>
-      {skill}
     </div>
   );
 };
