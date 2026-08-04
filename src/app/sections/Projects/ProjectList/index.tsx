@@ -6,7 +6,6 @@ import { Spinner } from "@/components/Spinner";
 import { makePath } from "@/services";
 import { PROJECTS_ROUTE } from "@/constants";
 import { Project } from "@/types";
-import { Carousel } from "@/components/Carousel";
 import { ProjectCard } from "../ProjectCard";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -41,12 +40,10 @@ export const ProjectList = () => {
 
   return (
     <div className="grid gap-6">
-      <div className="flex gap-6 text-accent-dark items-center min-h-[50vh]">
-        <Carousel
-          items={projectsList.map((project) => (
-            <ProjectCard key={project.id} {...project} />
-          ))}
-        />
+      <div className="grid gap-6 h-[95vh] overflow-y-auto rounded-lg p-4 shadow-[inset_0_2px_14px_rgba(30,30,30,0.35)]">
+        {projectsList.map((project) => (
+          <ProjectCard key={project.id} {...project} />
+        ))}
       </div>
     </div>
   );

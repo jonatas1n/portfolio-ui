@@ -9,16 +9,20 @@ export const ProjectGallery = ({
   images,
 }: ProjectGalleryProps) => {
   const imagesNodes = images.map((image: string) => (
-    <Image
+    <div
       key={image}
-      src={image}
-      layout="responsive"
-      width={0}
-      height={0}
-      className="rounded-lg"
-      alt="Portfolio image"
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-    />
+      className="flex items-center justify-center rounded-lg bg-neutral-900 p-4"
+    >
+      <div className="relative h-64 w-full">
+        <Image
+          src={image}
+          fill
+          className="object-contain"
+          alt="Portfolio image"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+    </div>
   ));
   return (
     <Carousel
