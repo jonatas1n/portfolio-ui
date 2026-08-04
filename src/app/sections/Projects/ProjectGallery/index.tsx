@@ -2,13 +2,13 @@ import Image from "next/image";
 import { Carousel } from "../../../components/Carousel";
 
 type ProjectGalleryProps = {
-  images: string;
+  images: string[];
 };
 
 export const ProjectGallery = ({
   images,
 }: ProjectGalleryProps) => {
-  const imagesNodes = JSON.parse(images).map((image: string) => (
+  const imagesNodes = images.map((image: string) => (
     <Image
       key={image}
       src={image}

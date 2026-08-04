@@ -1,4 +1,4 @@
-import { Experience, ExperienceResponse } from "../types";
+import { ExperienceResponse } from "../types";
 import { makePath } from "./utils";
 
 export const EXPERIENCES_ROUTE = "experiences";
@@ -30,7 +30,7 @@ export const getExperiences = (url: string) =>
       })
     );
 
-export const getExperiencesFilters = async (): Promise<Experience["technologies"]> => {
+export const getExperiencesFilters = async (): Promise<string[]> => {
   try {
     const path = makePath(EXPERIENCES_ROUTE + "/technologies");
     const response = await fetch(path);

@@ -32,7 +32,7 @@ export const ExperienceCard = ({
             </div>
           </div>
           <div className="flex flex-wrap gap-4 pb-4 border-b border-b-accent">
-            {technologies.map((technology: string) => (
+            {(technologies ?? []).map((technology: string) => (
               <Tag key={technology}>{technology}</Tag>
             ))}
           </div>

@@ -4,7 +4,7 @@ export type Experience = {
   companyName: string;
   startDate: string;
   endDate?: string;
-  technologies: string[];
+  technologies: string[] | null;
   description: string;
 };
 
@@ -14,6 +14,6 @@ export type ExperienceResponse = {
   company_name: string;
   start_date: string;
   end_date?: string;
-  technologies: string[];
+  technologies: string[] | null;
   description: string;
 }

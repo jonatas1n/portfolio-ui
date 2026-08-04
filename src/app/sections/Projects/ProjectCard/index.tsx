@@ -32,7 +32,7 @@ export const ProjectCard = ({
             <HiOutlineExternalLink />
           </Link>
           <div className="flex flex-wrap gap-2 md:gap-4">
-            {technologies.map((technology, index) => (
+            {(technologies ?? []).map((technology, index) => (
               <motion.div
                 key={technology}
                 initial={{ opacity: 0, translateX: 10 }}
@@ -55,7 +55,7 @@ export const ProjectCard = ({
             animate={{ opacity: 1 }}
             className="grid gap-3 mt-4 mx-auto w-full h-max-[20rem]"
           >
-            {images && (
+            {images && images.length > 0 && (
               <ProjectGallery
                 images={images}
               />

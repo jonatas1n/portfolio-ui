@@ -1,8 +1,8 @@
 export type Project = {
   id: string;
   title: string;
-  technologies: string[];
+  technologies: string[] | null;
   description: string;
-  images?: string;
+  images?: string[] | null;
   link?: string;
 };
