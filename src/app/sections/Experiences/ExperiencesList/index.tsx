@@ -13,12 +13,14 @@ import {
   getExperiencesFilters,
   EXPERIENCES_ROUTE,
 } from "@/services";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const ExperienceList = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
   const [technologies, setTechnologies] = useState<string[]>([]);
+  const { language } = useLanguage();
 
-  const swrPath = makePath(EXPERIENCES_ROUTE, { technologies });
+  const swrPath = makePath(EXPERIENCES_ROUTE, { technologies, lang: language });
 
   const {
     data: experiencesList,

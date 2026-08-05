@@ -14,12 +14,14 @@ import * as motion from "motion/react-client";
 
 import { useState, useMemo } from "react";
 import { Button } from "@/components/Button";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const SkillList = () => {
   const [modalContent, setModalContent] = useState<
     Omit<Skill, "id"> | undefined
   >(undefined);
-  const swrPath = makePath(SKILLS_ROUTE);
+  const { language } = useLanguage();
+  const swrPath = makePath(SKILLS_ROUTE, { lang: language });
   const {
     data: skillsGroupsList,
     error,

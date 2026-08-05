@@ -13,16 +13,24 @@ export const ProjectCard = ({
   description,
   images,
 }: Project) => {
+  const headerClassName =
+    "sticky top-0 z-10 flex items-center justify-between gap-4 rounded-t-lg bg-card px-6 py-4 font-display text-2xl font-bold text-dark";
+
   return (
     <div className="rounded-lg bg-card text-dark shadow-lg">
-      <Link
-        href={link ?? ""}
-        target="_blank"
-        className="sticky top-0 z-10 flex items-center justify-between gap-4 rounded-t-lg bg-card px-6 py-4 font-display text-2xl font-bold text-dark hover:underline"
-      >
-        {title}
-        <HiOutlineExternalLink />
-      </Link>
+      {link ? (
+        <Link
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${headerClassName} hover:underline`}
+        >
+          {title}
+          <HiOutlineExternalLink />
+        </Link>
+      ) : (
+        <h3 className={headerClassName}>{title}</h3>
+      )}
       <div className="grid gap-4 px-6 pb-6">
         <div className="flex flex-wrap gap-2 md:gap-4">
           {(technologies ?? []).map((technology) => (

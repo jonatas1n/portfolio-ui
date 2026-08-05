@@ -4,16 +4,19 @@ import { useState } from "react";
 import { social } from "@/constants/social";
 import Link from "next/link";
 import { FloatButton } from "../FloatButton";
+import { LanguageSwitch } from "../LanguageSwitch";
+import { useLanguage } from "@/context/LanguageContext";
 import * as motion from "motion/react-client";
-
-const sectionsLinks = [
-  { link: "#projects", label: "Creations" },
-  { link: "#skills", label: "Skills" },
-  { link: "#experiences", label: "Journey" },
-];
 
 export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { translation } = useLanguage();
+
+  const sectionsLinks = [
+    { link: "#projects", label: translation.menu.creations },
+    { link: "#skills", label: translation.menu.skills },
+    { link: "#experiences", label: translation.menu.journey },
+  ];
 
   const toggleOpenState = () => setIsOpen(!isOpen);
 
@@ -27,6 +30,9 @@ export const SideMenu = () => {
           isOpen ? "flex" : "hidden"
         } lg:flex flex-col-reverse lg:flex-col transition font-display gap-5 lg:bg-transparent bg-accent lg:p-0 p-4 rounded-xl lg:rounded-none`}
       >
+        <div className="order-last lg:order-first grid">
+          <LanguageSwitch />
+        </div>
         <ul className="grid gap-2">
           {sectionsLinks.map((link) => (
             <Link key={link.link} href={link.link}>
@@ -51,7 +57,7 @@ export const SideMenu = () => {
             animate={{ opacity: 1, transform: "translateX(0)" }}
             className="font-bold text-center"
           >
-            Get in touch
+            {translation.menu.getInTouch}
           </motion.p>
           <ul className="flex justify-around font-body">
             {Object.values(social).map((social, index) => (

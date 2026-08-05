@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Jônatas' Portfolio",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="transition antialiased bg-dark min-h-screen">{children}</body>
+      <body className="transition antialiased bg-dark min-h-screen">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

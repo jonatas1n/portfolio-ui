@@ -7,11 +7,13 @@ import { makePath } from "@/services";
 import { PROJECTS_ROUTE } from "@/constants";
 import { Project } from "@/types";
 import { ProjectCard } from "../ProjectCard";
+import { useLanguage } from "@/context/LanguageContext";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const ProjectList = () => {
-  const swrPath = makePath(PROJECTS_ROUTE, {});
+  const { language } = useLanguage();
+  const swrPath = makePath(PROJECTS_ROUTE, { lang: language });
   const {
     data: projectsList,
     error,
@@ -40,7 +42,7 @@ export const ProjectList = () => {
 
   return (
     <div className="grid gap-6">
-      <div className="grid gap-6 h-[95vh] overflow-y-auto rounded-lg p-4 shadow-[inset_0_2px_14px_rgba(30,30,30,0.35)]">
+      <div className="grid gap-6 h-[95vh] overflow-y-auto rounded-lg p-4">
         {projectsList.map((project) => (
           <ProjectCard key={project.id} {...project} />
         ))}
