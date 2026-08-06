@@ -1,29 +1,48 @@
-import { Carousel } from "../../../components/Carousel";
+"use client";
+
+import { SyntheticEvent, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 type ProjectGalleryProps = {
   images: string[];
 };
 
-export const ProjectGallery = ({
-  images,
-}: ProjectGalleryProps) => {
-  const imagesNodes = images.map((image: string) => (
-    <div
-      key={image}
-      className="flex items-center justify-center rounded-lg bg-neutral-900 p-4 w-full h-[60vh] sm:h-[30rem]"
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={image}
-        alt="Portfolio image"
-        className="max-h-full max-w-full w-auto object-contain mx-auto rounded-md"
-      />
-    </div>
-  ));
+type Orientation = "portrait" | "landscape";
+
+export const ProjectGallery = ({ images }: ProjectGalleryProps) => {
+  const { translation } = useLanguage();
+  const [orientations, setOrientations] = useState<Record<number, Orientation>>(
+    {}
+  );
+
+  const handleImageLoad =
+    (index: number) => (event: SyntheticEvent<HTMLImageElement>) => {
+      const { naturalWidth, naturalHeight } = event.currentTarget;
+      const orientation: Orientation =
+        naturalWidth > naturalHeight ? "landscape" : "portrait";
+      setOrientations((previous) => ({ ...previous, [index]: orientation }));
+    };
+
   return (
-    <Carousel
-      items={imagesNodes}
-      showIndex
-    />
+    <div className="rounded-lg bg-black p-3 sm:p-4">
+      <div className="columns-2 sm:columns-3 gap-3 [column-fill:balance]">
+        {images.map((image, index) => (
+          <figure
+            key={index}
+            className={`mb-3 break-inside-avoid ${
+              orientations[index] === "landscape" ? "[column-span:all]" : ""
+            }`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={image}
+              alt={translation.misc.galleryImageAlt}
+              onLoad={handleImageLoad(index)}
+              className="w-full h-auto max-h-[70vh] object-contain rounded-md"
+            />
+          </figure>
+        ))}
+      </div>
+    </div>
   );
 };

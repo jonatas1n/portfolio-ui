@@ -6,6 +6,7 @@ import {
   FaRegArrowAltCircleRight,
 } from "react-icons/fa";
 import * as motion from "motion/react-client";
+import { useLanguage } from "@/context/LanguageContext";
 
 type GalleryProps = {
   items: ReactNode[];
@@ -16,6 +17,7 @@ export const Carousel = ({
   items,
   showIndex = false,
 }: GalleryProps) => {
+  const { translation } = useLanguage();
   const [itemIndex, setItemIndex] = useState(0);
 
   const nextItem = () => {
@@ -41,14 +43,14 @@ export const Carousel = ({
           disabled={itemIndex == 0}
           onClick={prevItem}
         >
-          <FaRegArrowAltCircleLeft size={24} /> <span className="inline lg:hidden">Previous</span>
+          <FaRegArrowAltCircleLeft size={24} /> <span className="inline lg:hidden">{translation.carousel.previous}</span>
         </button>
       )}
       <div className="grid lg:row-start-1 lg:col-span-1 gap-4 justify-center row-start-2 col-start-1 col-span-2 w-full">
         {items[itemIndex]}
         {showIndex && items.length > 1 && (
           <h6 className="text-center text-dark font-display">
-            {itemIndex + 1} of {items.length}
+            {itemIndex + 1} {translation.carousel.of} {items.length}
           </h6>
         )}
       </div>
@@ -58,7 +60,7 @@ export const Carousel = ({
           disabled={items.length == itemIndex + 1}
           onClick={nextItem}
         >
-          <span className="inline lg:hidden">Next</span> <FaRegArrowAltCircleRight size={24} />
+          <span className="inline lg:hidden">{translation.carousel.next}</span> <FaRegArrowAltCircleRight size={24} />
         </button>
       )}
     </motion.div>

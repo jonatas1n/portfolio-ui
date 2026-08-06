@@ -1,6 +1,9 @@
+"use client";
+
 import { Tag } from "../Tag";
 import { FaTimes } from "react-icons/fa";
 import * as motion from "motion/react-client";
+import { useLanguage } from "@/context/LanguageContext";
 
 type FilterProps = {
   filtersList: string[];
@@ -10,9 +13,11 @@ type FilterProps = {
 };
 
 export const Filter = ({ filtersList, onClear, onChange, technologies }: FilterProps) => {
+  const { translation } = useLanguage();
+
   return (
     <div className="flex flex-wrap gap-2 md:gap-4 items-center font-body">
-      <p className="text-accent">Filter:</p>
+      <p className="text-accent">{translation.filter.label}</p>
       {filtersList?.map((filter, index) => (
         <motion.div
           key={filter}
@@ -34,7 +39,7 @@ export const Filter = ({ filtersList, onClear, onChange, technologies }: FilterP
           onClick={onClear}
           className="flex gap-1 cursor-pointer text-sm items-center uppercase text-accent"
         >
-          <FaTimes size="16" /> Clear
+          <FaTimes size="16" /> {translation.filter.clear}
         </p>
       )}
     </div>

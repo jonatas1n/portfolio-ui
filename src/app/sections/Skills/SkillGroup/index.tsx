@@ -5,10 +5,9 @@ import * as motion from "motion/react-client";
 type SkillGroupProps = {
   title: string;
   skills: Skill[];
-  onClick: (skill: Skill) => void;
 };
 
-export const SkillGroup = ({ title, skills, onClick }: SkillGroupProps) => {
+export const SkillGroup = ({ title, skills }: SkillGroupProps) => {
   return (
     <div className="rounded-lg bg-card p-4 w-full grid gap-6">
       <motion.h4
@@ -28,7 +27,7 @@ export const SkillGroup = ({ title, skills, onClick }: SkillGroupProps) => {
             transition={{ delay: index * 0.06125, duration: .5 }}
             key={skill.id}
           >
-            <SkillButton skill={skill.title} onClick={() => onClick(skill)} />
+            <SkillButton skill={skill.title} />
           </motion.div>
         ))}
       </div>

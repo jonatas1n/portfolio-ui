@@ -1,11 +1,11 @@
 "use client"
 
-import { PropsWithChildren, useMemo } from "react";
+import { PropsWithChildren } from "react";
 import { SectionCard } from "@/components/SectionCard";
 import * as motion from "motion/react-client";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
-import { BIOGRAPHY_PHRASE } from "./constants";
+import { useLanguage } from "@/context/LanguageContext";
 
 const AnimatedIntro = ({ children }: PropsWithChildren) => (
   <motion.div
@@ -20,7 +20,7 @@ const AnimatedIntro = ({ children }: PropsWithChildren) => (
 
 export const Intro = () => {
   const [intro, setIntro] = useState(false);
-  const biographyPhrase = useMemo(() => BIOGRAPHY_PHRASE, []);
+  const { translation } = useLanguage();
 
   return (
     <AnimatedIntro>
@@ -40,7 +40,7 @@ export const Intro = () => {
                     exit={{ opacity: 0, x: 64 }}
                     className="flex absolute transform top-1/4 text-center h-full w-full col-span-full gap-1 font-display text-6xl font-bold justify-center"
                   >
-                    Hey!{" "}
+                    {translation.intro.greeting}{" "}
                     <motion.div
                       animate={{ rotate: [12, -12, 12, -12, 12] }}
                       transition={{ duration: 1, delay: 0 }}
@@ -66,7 +66,7 @@ export const Intro = () => {
                         transition={{ delay: 0.1, duration: 1 }}
                         className="text-[clamp(2rem,5vw,4rem)] font-bold leading-10"
                       >
-                        I&apos;m Jônatas Gomes
+                        {translation.intro.name}
                       </motion.h1>
                       <motion.h4
                         initial={{ opacity: 0, y: 15 }}
@@ -74,7 +74,7 @@ export const Intro = () => {
                         transition={{ delay: 0.4, duration: 1 }}
                         className="sm:text-xl font-bold text-accent leading-10"
                       >
-                        (but you can call me Johny)
+                        {translation.intro.nickname}
                       </motion.h4>
                     </div>
                     <motion.h3
@@ -83,7 +83,7 @@ export const Intro = () => {
                       transition={{ delay: 1, duration: 1 }}
                       className="sm:text-3xl text-xl font-bold font-display"
                     >
-                      and this is my portfolio 👨🏿‍💻
+                      {translation.intro.tagline}
                     </motion.h3>
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
@@ -91,7 +91,7 @@ export const Intro = () => {
                       transition={{ delay: 1.75, duration: 1 }}
                       className="text-base font-body py-2 md:py-4 border-y border-dark"
                     >
-                      {biographyPhrase}
+                      {translation.intro.biography}
                     </motion.div>
                   </div>
                 </motion.div>

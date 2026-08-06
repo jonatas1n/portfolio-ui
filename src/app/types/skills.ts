@@ -1,14 +1,12 @@
 export type SkillResponse = {
   id: string;
   title: string;
-  description: string;
   skill_type: string;
 };
 
 export type Skill = {
   id: string;
   title: string;
-  description: string;
   skillType: string;
 };
 

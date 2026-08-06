@@ -14,7 +14,7 @@ export const ProjectCard = ({
   images,
 }: Project) => {
   const headerClassName =
-    "sticky top-0 z-10 flex items-center justify-between gap-4 rounded-t-lg bg-card px-6 py-4 font-display text-2xl font-bold text-dark";
+    "flex items-center justify-between gap-4 rounded-t-lg bg-card px-6 py-4 font-display text-2xl font-bold text-dark";
 
   return (
     <div className="rounded-lg bg-card text-dark shadow-lg">

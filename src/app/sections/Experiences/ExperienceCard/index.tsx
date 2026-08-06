@@ -1,8 +1,11 @@
+"use client";
+
 import { Experience } from "@/types";
 import { Tag } from "@/components/Tag";
 import { Card } from "@/components/Card";
 import DOMPurify from "dompurify";
 import * as motion from "motion/react-client";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const ExperienceCard = ({
   position,
@@ -12,6 +15,8 @@ export const ExperienceCard = ({
   technologies,
   description,
 }: Experience) => {
+  const { translation } = useLanguage();
+
   return (
     <motion.div
       whileInView={{ opacity: 1, x: 0 }}
@@ -25,10 +30,10 @@ export const ExperienceCard = ({
               {position}
             </h4>
             <div className="md:text-xl text-lg">
-              at <strong>{companyName}</strong>
+              {translation.experience.at} <strong>{companyName}</strong>
             </div>
             <div className="md:text-lg text-md">
-              {startDate} ~ {endDate ?? "Actually"}
+              {startDate} ~ {endDate ?? translation.experience.present}
             </div>
           </div>
           <div className="flex flex-wrap gap-4 pb-4 border-b border-b-accent">

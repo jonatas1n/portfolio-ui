@@ -2,25 +2,16 @@
 
 import useSWR from "swr";
 import { getSkills, makePath, SKILLS_ROUTE } from "@/services";
-import { AnimatePresence } from "motion/react";
 import { SkillGroup } from "../SkillGroup";
 import { Spinner } from "@/components/Spinner";
-
-import { Skill, SkillGroupType } from "@/types";
-import { Modal } from "@/components/Modal";
-import DOMPurify from "dompurify";
-
+import { SkillGroupType } from "@/types";
 import * as motion from "motion/react-client";
-
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { Button } from "@/components/Button";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const SkillList = () => {
-  const [modalContent, setModalContent] = useState<
-    Omit<Skill, "id"> | undefined
-  >(undefined);
-  const { language } = useLanguage();
+  const { language, translation } = useLanguage();
   const swrPath = makePath(SKILLS_ROUTE, { lang: language });
   const {
     data: skillsGroupsList,
@@ -28,8 +19,6 @@ export const SkillList = () => {
     mutate,
     isLoading,
   } = useSWR<SkillGroupType>(swrPath, getSkills);
-
-  const clearModalContent = () => setModalContent(undefined);
 
   const skillsGroups = useMemo(() => {
     return Object.entries(skillsGroupsList ?? {}).map(
@@ -41,11 +30,7 @@ export const SkillList = () => {
           viewport={{ once: true }}
           className="col-span-1"
         >
-          <SkillGroup
-            title={groupTitle}
-            skills={skillsList}
-            onClick={(skill: Skill) => setModalContent(skill)}
-          />
+          <SkillGroup title={groupTitle} skills={skillsList} />
         </motion.div>
       )
     );
@@ -58,36 +43,15 @@ export const SkillList = () => {
   if (error) {
     return (
       <p className="text-lg">
-        An error occurred.
-        <Button onClick={mutate}>Try again</Button>
+        {translation.states.genericError}
+        <Button onClick={mutate}>{translation.states.tryAgain}</Button>
       </p>
     );
   }
 
   if (Object.keys(skillsGroupsList ?? {}).length === 0) {
-    return <p className="text-lg">No skills found</p>;
+    return <p className="text-lg">{translation.states.noSkills}</p>;
   }
 
-  return (
-    <>
-      {modalContent && (
-        <AnimatePresence>
-          <Modal
-            title={modalContent.title}
-            onClose={clearModalContent}
-            key={modalContent.title}
-          >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(modalContent.description),
-              }}
-            />
-          </Modal>
-        </AnimatePresence>
-      )}
-      <div className="grid grid-cols-1 gap-10">
-        {skillsGroups.map(skillGroup => skillGroup)}
-      </div>
-    </>
-  );
+  return <div className="grid grid-cols-1 gap-10">{skillsGroups}</div>;
 };

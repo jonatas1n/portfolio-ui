@@ -18,7 +18,7 @@ import { useLanguage } from "@/context/LanguageContext";
 export const ExperienceList = () => {
   const [filtersList, setFiltersList] = useState<string[]>([]);
   const [technologies, setTechnologies] = useState<string[]>([]);
-  const { language } = useLanguage();
+  const { language, translation } = useLanguage();
 
   const swrPath = makePath(EXPERIENCES_ROUTE, { technologies, lang: language });
 
@@ -45,14 +45,14 @@ export const ExperienceList = () => {
   }, []);
 
   if (error) {
-    return "error";
+    return <p className="text-lg">{translation.states.genericError}</p>;
   }
 
   if (isLoading && !experiencesList) return <Spinner />
 
   if (!experiencesList) {
     return (
-      <p className="text-lg">No experiences found</p>
+      <p className="text-lg">{translation.states.noExperiences}</p>
     )
   }
 
