@@ -28,9 +28,9 @@ export type Translation = {
 export const translations: Record<Language, Translation> = {
   en: {
     languageSwitch: {
-      label: "Mudar para Português",
+      label: "Em Português",
       flag: "🇧🇷",
-      ariaLabel: "Mudar para Português",
+      ariaLabel: "Em Português",
     },
     menu: {
       creations: "Creations",
@@ -41,9 +41,9 @@ export const translations: Record<Language, Translation> = {
   },
   pt: {
     languageSwitch: {
-      label: "Switch to english",
+      label: "To english",
       flag: "🇺🇸",
-      ariaLabel: "Switch to english",
+      ariaLabel: "To english",
     },
     menu: {
       creations: "Criações",
