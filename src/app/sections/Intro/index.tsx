@@ -80,7 +80,7 @@ export const Intro = () => {
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1, duration: 1 }}
-                        className="text-[clamp(2rem,5vw,4rem)] font-bold leading-10"
+                        className="text-[clamp(2rem,5vw,4rem)] font-bold leading-tight"
                       >
                         {translation.intro.name}
                       </motion.h1>
