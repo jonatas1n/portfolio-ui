@@ -12,7 +12,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export const SkillList = () => {
   const { language, translation } = useLanguage();
-  const swrPath = makePath(SKILLS_ROUTE, { lang: language });
+  const swrPath = makePath(SKILLS_ROUTE);
   const {
     data: skillsGroupsList,
     error,
@@ -21,20 +21,23 @@ export const SkillList = () => {
   } = useSWR<SkillGroupType>(swrPath, getSkills);
 
   const skillsGroups = useMemo(() => {
-    return Object.entries(skillsGroupsList ?? {}).map(
-      ([groupTitle, skillsList], index) => (
+    return (skillsGroupsList ?? []).map((group) => {
+      const title =
+        language === "pt" && group.namePt ? group.namePt : group.name;
+
+      return (
         <motion.div
-          key={index}
+          key={group.name}
           initial={{ translateX: 0, opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="col-span-1"
         >
-          <SkillGroup title={groupTitle} skills={skillsList} />
+          <SkillGroup title={title} skills={group.skills} />
         </motion.div>
-      )
-    );
-  }, [skillsGroupsList]);
+      );
+    });
+  }, [skillsGroupsList, language]);
 
   if (isLoading) {
     return <Spinner />;
@@ -49,7 +52,7 @@ export const SkillList = () => {
     );
   }
 
-  if (Object.keys(skillsGroupsList ?? {}).length === 0) {
+  if ((skillsGroupsList ?? []).length === 0) {
     return <p className="text-lg">{translation.states.noSkills}</p>;
   }
 
