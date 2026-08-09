@@ -1,6 +1,7 @@
 "use client"
 
 import { PropsWithChildren } from "react";
+import Image from "next/image";
 import { SectionCard } from "@/components/SectionCard";
 import * as motion from "motion/react-client";
 import { useState } from "react";
@@ -56,9 +57,24 @@ export const Intro = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="lg:col-span-7 col-span-full gap-6 grid transition-all"
+                  className="col-span-full grid sm:gap-9 gap-4 md:gap-3 md:px-0 px-2 transition-all"
                 >
-                  <div className="grid sm:gap-9 gap-4 md:gap-3 md:px-0 px-2">
+                  <div className="flex items-center gap-8 mb-4">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8, x: -32 }}
+                      animate={{ opacity: 1, scale: 1, x: 0 }}
+                      transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+                      className="shrink-0"
+                    >
+                      <Image
+                        src="/profile.png"
+                        alt={translation.intro.name}
+                        width={192}
+                        height={192}
+                        priority
+                        className="h-28 w-28 sm:h-44 sm:w-44 rounded-full object-cover object-top"
+                      />
+                    </motion.div>
                     <div className="font-display">
                       <motion.h1
                         initial={{ opacity: 0, y: 15 }}
@@ -76,24 +92,24 @@ export const Intro = () => {
                       >
                         {translation.intro.nickname}
                       </motion.h4>
+                      <motion.h3
+                        initial={{ opacity: 0, x: 15 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1, duration: 1 }}
+                        className="sm:text-3xl text-xl font-bold font-display mt-2 sm:mt-3"
+                      >
+                        {translation.intro.tagline}
+                      </motion.h3>
                     </div>
-                    <motion.h3
-                      initial={{ opacity: 0, x: 15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 1, duration: 1 }}
-                      className="sm:text-3xl text-xl font-bold font-display"
-                    >
-                      {translation.intro.tagline}
-                    </motion.h3>
-                    <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.75, duration: 1 }}
-                      className="text-base font-body py-2 md:py-4 border-y border-dark"
-                    >
-                      {translation.intro.biography}
-                    </motion.div>
                   </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.75, duration: 1 }}
+                    className="text-lg sm:text-xl font-body font-medium leading-relaxed py-2 md:py-4 border-y border-dark"
+                  >
+                    {translation.intro.biography}
+                  </motion.div>
                 </motion.div>
               )}
             </div>

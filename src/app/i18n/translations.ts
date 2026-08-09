@@ -102,7 +102,7 @@ export const translations: Record<Language, Translation> = {
     },
     intro: {
       greeting: "Hey!",
-      name: "I'm Jônatas Gomes",
+      name: "I'm Jônatas\u00A0Gomes",
       nickname: "(but you can call me Johny)",
       tagline: "and this is my portfolio 👨🏿‍💻",
       biography:
@@ -162,7 +162,7 @@ export const translations: Record<Language, Translation> = {
     },
     intro: {
       greeting: "Olá!",
-      name: "Eu sou o Jônatas Gomes",
+      name: "Eu sou o Jônatas\u00A0Gomes",
       nickname: "(mas pode me chamar de Johny)",
       tagline: "e este é o meu portfólio 👨🏿‍💻",
       biography:
