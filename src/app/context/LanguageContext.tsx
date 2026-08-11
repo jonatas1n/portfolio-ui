@@ -3,19 +3,22 @@
 import {
   createContext,
   PropsWithChildren,
+  Suspense,
   useCallback,
   useContext,
   useEffect,
   useMemo,
   useState,
 } from "react";
+import { useSearchParams } from "next/navigation";
 import {
+  buildLanguageHref,
   DEFAULT_LANGUAGE,
-  isLanguage,
+  getTranslation,
   Language,
-  LANGUAGE_STORAGE_KEY,
+  parseLanguageParam,
+  Translation,
 } from "@/i18n";
-import { getTranslation, Translation } from "@/i18n";
 
 type LanguageContextValue = {
   language: Language;
@@ -28,34 +31,41 @@ const LanguageContext = createContext<LanguageContextValue | undefined>(
   undefined
 );
 
-const readStoredLanguage = (): Language => {
+const writeLanguageToUrl = (language: Language) => {
   if (typeof window === "undefined") {
-    return DEFAULT_LANGUAGE;
+    return;
   }
 
-  const stored = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  return isLanguage(stored) ? stored : DEFAULT_LANGUAGE;
+  const href = buildLanguageHref(window.location, language);
+  window.history.replaceState(window.history.state, "", href);
+};
+
+type LanguageUrlListenerProps = {
+  onLanguageFromUrl: (language: Language) => void;
+};
+
+const LanguageUrlListener = ({
+  onLanguageFromUrl,
+}: LanguageUrlListenerProps) => {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    onLanguageFromUrl(parseLanguageParam(searchParams));
+  }, [searchParams, onLanguageFromUrl]);
+
+  return null;
 };
 
 export const LanguageProvider = ({ children }: PropsWithChildren) => {
   const [language, setLanguageState] = useState<Language>(DEFAULT_LANGUAGE);
 
   useEffect(() => {
-    setLanguageState(readStoredLanguage());
-  }, []);
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      document.documentElement.lang = language;
-    }
+    document.documentElement.lang = language;
   }, [language]);
 
   const setLanguage = useCallback((next: Language) => {
     setLanguageState(next);
-
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, next);
-    }
+    writeLanguageToUrl(next);
   }, []);
 
   const toggleLanguage = useCallback(() => {
@@ -74,6 +84,9 @@ export const LanguageProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <LanguageContext.Provider value={value}>
+      <Suspense fallback={null}>
+        <LanguageUrlListener onLanguageFromUrl={setLanguageState} />
+      </Suspense>
       {children}
     </LanguageContext.Provider>
   );

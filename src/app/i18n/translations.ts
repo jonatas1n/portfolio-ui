@@ -67,6 +67,17 @@ type ProjectsCopy = {
   closeSummary: string;
 };
 
+type ContactsCopy = {
+  openLink: string;
+  copyEmail: string;
+  emailCopied: string;
+};
+
+type ResumeCopy = {
+  label: string;
+  ariaLabel: string;
+};
+
 export type Translation = {
   languageSwitch: LanguageSwitchCopy;
   menu: MenuCopy;
@@ -78,6 +89,8 @@ export type Translation = {
   carousel: CarouselCopy;
   misc: MiscCopy;
   projects: ProjectsCopy;
+  contacts: ContactsCopy;
+  resume: ResumeCopy;
 };
 
 /**
@@ -106,7 +119,7 @@ export const translations: Record<Language, Translation> = {
       nickname: "(but you can call me Johny)",
       tagline: "and this is my portfolio 👨🏿‍💻",
       biography:
-        "I am a frontend developer passionate about creating innovative solutions, always focused on improving user experience and optimizing processes through advanced technologies and agile practices.",
+        "At work, I'm a Frontend Developer at Pinterest — building React/TypeScript components for a massive user base. Outside of it, I like taking products from zero to launch: I've built everything from fintech systems to apps for street vendors. Here you'll find both sides.",
     },
     sections: {
       creations: "Creations",
@@ -147,6 +160,15 @@ export const translations: Record<Language, Translation> = {
       nextProject: "Next project",
       closeSummary: "Close summary",
     },
+    contacts: {
+      openLink: "Open {contact}",
+      copyEmail: "Send me an email and copy the address",
+      emailCopied: "Email copied to your clipboard",
+    },
+    resume: {
+      label: "My resume",
+      ariaLabel: "Download my resume",
+    },
   },
   pt: {
     languageSwitch: {
@@ -166,7 +188,7 @@ export const translations: Record<Language, Translation> = {
       nickname: "(mas pode me chamar de Johny)",
       tagline: "e este é o meu portfólio 👨🏿‍💻",
       biography:
-        "Sou um desenvolvedor frontend apaixonado por criar soluções inovadoras, sempre focado em melhorar a experiência do usuário e otimizar processos por meio de tecnologias avançadas e práticas ágeis.",
+        "No trabalho, sou Frontend Developer no Pinterest — construindo componentes React/TypeScript para uma base gigantesca de usuários. Fora dele, gosto de tirar produtos do zero e colocar no ar: já criei de sistemas de fintech a aplicativos para vendedores ambulantes. Aqui você encontra os dois lados.",
     },
     sections: {
       creations: "Criações",
@@ -206,6 +228,15 @@ export const translations: Record<Language, Translation> = {
       previousProject: "Projeto anterior",
       nextProject: "Próximo projeto",
       closeSummary: "Fechar sumário",
+    },
+    contacts: {
+      openLink: "Abrir {contact}",
+      copyEmail: "Me enviar um e-mail e copiar o endereço",
+      emailCopied: "E-mail copiado para a área de transferência",
+    },
+    resume: {
+      label: "Meu currículo",
+      ariaLabel: "Baixar meu currículo",
     },
   },
 };

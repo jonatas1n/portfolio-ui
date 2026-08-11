@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { social } from "@/constants/social";
 import Link from "next/link";
 import { FloatButton } from "../FloatButton";
 import { LanguageSwitch } from "../LanguageSwitch";
+import { ContactList } from "./ContactList";
+import { ResumeButton } from "./ResumeButton";
 import { useLanguage } from "@/context/LanguageContext";
 import * as motion from "motion/react-client";
 
@@ -52,32 +53,8 @@ export const SideMenu = () => {
           animate={{ opacity: 1, width: "unset" }}
         />
         <div className="text-light gap-5 grid">
-          <motion.p
-            initial={{ opacity: 0, transform: "translateX(1rem)" }}
-            animate={{ opacity: 1, transform: "translateX(0)" }}
-            className="font-bold text-center"
-          >
-            {translation.menu.getInTouch}
-          </motion.p>
-          <ul className="flex justify-around font-body">
-            {Object.values(social).map((social, index) => (
-              <Link
-                key={social.link}
-                target="__blank"
-                className="underline"
-                href={social.link}
-              >
-                <motion.li
-                  initial={{ opacity: 0, transform: "translateY(1.5rem)" }}
-                  animate={{ opacity: 1, transform: "translateY(0)" }}
-                  transition={{ delay: 0.06125 * index }}
-                  className="flex hover:bg-accent transition-all hover:text-light hover:scale-110 rounded-full bg-light text-dark p-1 w-full"
-                >
-                  {social.icon({ fontSize: 24 })}
-                </motion.li>
-              </Link>
-            ))}
-          </ul>
+          <ContactList />
+          <ResumeButton />
         </div>
       </div>
     </div>
